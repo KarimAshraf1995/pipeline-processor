@@ -3,14 +3,14 @@ Use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 
 
-entity FetchStage is 
+entity DecodeStage is 
 	port (CLK : in std_logic;
 		InMuxSelector: in std_logic; -- IN mux selector
 		RMuxSelector: in std_logic; --From FU, R1 Mux and R2 Mux selectors
 		WriteBackEnable: in std_logic; --Enable writeback to RegFile
-		DecodeBufferClear: in std_logic; --Flush Decode Buffer
+		DecodeBufferFlush: in std_logic; --Flush Decode Buffer
 		ImmMuxSelector: in std_logic_vector(1 downto 0); --From CU,
-		FetchStage: in std_logic_vector (31 downto 0); --Output of the Fetch StageBufferLowerOut
+		FetchStage: in std_logic_vector (31 downto 0); --Output of the Fetch Stage Buffer
 		WriteBackAddress: in std_logic_vector (2 downto 0); --Which Reg to writeback in
 		WriteBackValue: in std_logic_vector (15 downto 0); --writeback value
 		InPort: in std_logic_vector (15 downto 0); -- Input port: 16 bits
@@ -18,10 +18,10 @@ entity FetchStage is
 		R1Out: out std_logic_vector (15 downto 0); --16 bits - Address stored in register 
 		StageOutput: out std_logic_vector(47 downto 0) --48 bits
 		);
-end entity FetchStage;
+end entity DecodeStage;
 
 
-Architecture FetchStage_Implementation of FetchStage is  
+Architecture DecodeStage_Implementation of DecodeStage is  
 component Mux2 is 
 	generic (width : integer := 16 );  
 	port (S : in std_logic;
@@ -79,7 +79,7 @@ Begin
 	
 	
 	StageBufferIn <= ImmMuxOut&R2MuxOut&R1Mux1Out;
-	DecodeBuffer: nRegister generic map(n=>48) port map(CLK,DecodeBufferClear, '1', StageBufferIn, StageOutput);
+	DecodeBuffer: nRegister generic map(n=>48) port map(CLK,DecodeBufferFlush, '1', StageBufferIn, StageOutput);
 	
 	
 	

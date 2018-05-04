@@ -7,7 +7,7 @@ entity FetchStage is
 	port (CLK : in std_logic;
 		PCEnble : in std_logic; -- PC enable - HDU
 		UpperMuxSelect: in std_logic; -- 1 bit upper MUX selector
-		FetchBufferClear: in std_logic; -- 1 bit to clear both upper&lower
+		FetchBufferFlush: in std_logic; -- 1 bit to clear both upper&lower
 		FetchBufferStall: in std_logic; -- 1 bit to stall upper Fetch
 		Jmp16R : in std_logic_vector (15 downto 0); -- 16 bits - Address stored in register but for Jumps that need a condition
 		PC16Addr : in std_logic_vector(15 downto 0);	--16 bits - Address stored in register 
@@ -71,8 +71,8 @@ Begin
 	UPPER_MUX: Mux2 generic map(width=>16) port map(UpperMuxSelect,FetchedInstruction,UpperMuxOut);
 	
 	StallLower <= not FetchBufferStall;
-	LowerFetchBuffer: nRegister generic map(n=>16) port map(CLK,FetchBufferClear, StallLower, FetchedInstruction, StageOutput(15 downto 0));
-	UpperFetchBuffer: nRegister generic map(n=>16) port map(CLK,FetchBufferClear, '1',UpperMuxOut, StageOutput(31 downto 16));
+	LowerFetchBuffer: nRegister generic map(n=>16) port map(CLK,FetchBufferFlush, StallLower, FetchedInstruction, StageOutput(15 downto 0));
+	UpperFetchBuffer: nRegister generic map(n=>16) port map(CLK,FetchBufferFlush, '1',UpperMuxOut, StageOutput(31 downto 16));
 	
 	
 end Architecture;
