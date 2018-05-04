@@ -21,9 +21,9 @@ VRX:?CF3b9h@D7OE3n`f3X0
 !s100 VQdC=`COfT73D2ZeaZ>><0
 Z6 OV;C;10.5b;63
 32
-Z7 !s110 1525448035
+Z7 !s110 1525457232
 !i10b 1
-Z8 !s108 1525448035.000000
+Z8 !s108 1525457232.000000
 Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ALU.vhd|
 Z10 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ALU.vhd|
 !i113 1
@@ -99,11 +99,11 @@ VT4XSzn>A7I5ZQWci3h:He3
 !s100 2c7L6@4fiDE=fT`NM5fWY3
 R6
 32
-Z21 !s110 1525448036
+Z21 !s110 1525457233
 !i10b 1
-Z22 !s108 1525448036.000000
-Z23 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU2.vhd|
-Z24 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU2.vhd|
+R8
+Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU2.vhd|
+Z23 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU2.vhd|
 !i113 1
 R11
 R12
@@ -119,19 +119,19 @@ R6
 32
 R21
 !i10b 1
+R8
 R22
 R23
-R24
 !i113 1
 R11
 R12
 Eau3
-Z25 w1523574290
+Z24 w1523574290
 R1
 R2
 R3
-Z26 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd
-Z27 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd
+Z25 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd
+Z26 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd
 l0
 L5
 VTb[Rg:aKh=l7JYhFb1`]@2
@@ -140,7 +140,7 @@ R6
 32
 R21
 !i10b 1
-R22
+Z27 !s108 1525457233.000000
 Z28 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd|
 Z29 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd|
 !i113 1
@@ -158,7 +158,7 @@ R6
 32
 R21
 !i10b 1
-R22
+R27
 R28
 R29
 !i113 1
@@ -204,25 +204,25 @@ R37
 R38
 R39
 Efetchstage
-Z40 w1525448267
+Z40 w1525457222
 Z41 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
 Z42 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
 R1
 R2
 R3
-Z43 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/FetchStage.vhd
-Z44 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/FetchStage.vhd
+Z43 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/DecodeStage.vhd
+Z44 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/DecodeStage.vhd
 l0
 L6
-VYGLTKoSkzFPIe[Z5`@Y0?3
-!s100 9]J^=[fLLIRI?ih1:WIBm2
+VcW@jR9=W:bk3z:^Lcm@V<1
+!s100 <zYYhGPjZV_f^Bd>I34:g1
 R6
 32
-Z45 !s110 1525448271
+Z45 !s110 1525457235
 !i10b 1
-Z46 !s108 1525448271.000000
-Z47 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/FetchStage.vhd|
-Z48 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/FetchStage.vhd|
+Z46 !s108 1525457235.000000
+Z47 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/DecodeStage.vhd|
+Z48 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/DecodeStage.vhd|
 !i113 1
 R11
 R12
@@ -231,11 +231,11 @@ R41
 R42
 R1
 R2
-Z49 DEx4 work 10 fetchstage 0 22 YGLTKoSkzFPIe[Z5`@Y0?3
-l65
-L21
-V]6CmN^a<:@eQQbRQdOR7c0
-!s100 _9jSR2DTAz4jGAU9OAF7i3
+DEx4 work 10 fetchstage 0 22 cW@jR9=W:bk3z:^Lcm@V<1
+l66
+L24
+VfZUKFl7Xg^X=[V0l`KC7Z2
+!s100 I:B7UNC@lBJmg_cG;]moc0
 R6
 32
 R45
@@ -247,12 +247,12 @@ R48
 R11
 R12
 Efull1adder
-Z50 w1519297364
+Z49 w1519297364
 R1
 R2
 R3
-Z51 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Full1Adder.vhd
-Z52 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Full1Adder.vhd
+Z50 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Full1Adder.vhd
+Z51 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Full1Adder.vhd
 l0
 L3
 VIMDA>2:o`0=k^ggQl>]C62
@@ -261,9 +261,9 @@ R6
 32
 R21
 !i10b 1
-R22
-Z53 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Full1Adder.vhd|
-Z54 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Full1Adder.vhd|
+R27
+Z52 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Full1Adder.vhd|
+Z53 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Full1Adder.vhd|
 !i113 1
 R11
 R12
@@ -279,28 +279,28 @@ R6
 32
 R21
 !i10b 1
-R22
+R27
+R52
 R53
-R54
 !i113 1
 R11
 R12
 Efullnadder
-Z55 w1519297409
+Z54 w1519297409
 R1
 R2
 R3
-Z56 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/FullNAdder.vhd
-Z57 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/FullNAdder.vhd
+Z55 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/FullNAdder.vhd
+Z56 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/FullNAdder.vhd
 l0
 L4
 VzAm]oLzTLPD?39=`E5@?D0
 !s100 RNmT=Y_l;GgHLni9>GOiW3
 R6
 32
-R21
+Z57 !s110 1525457234
 !i10b 1
-R22
+R27
 Z58 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/FullNAdder.vhd|
 Z59 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/FullNAdder.vhd|
 !i113 1
@@ -316,9 +316,9 @@ Vmb?BHF5NIMWPjoP>dzdGT1
 !s100 TP6zR<0njEWYOSo]oV:5X3
 R6
 32
-R21
+R57
 !i10b 1
-R22
+R27
 R58
 R59
 !i113 1
@@ -337,11 +337,11 @@ VgPg?UaVMPLLSNI@>Jjajj1
 !s100 <^RF@Vhm;OEdLzgX>B`070
 R6
 32
-Z63 !s110 1525448037
+R57
 !i10b 1
-Z64 !s108 1525448037.000000
-Z65 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux2.vhd|
-Z66 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux2.vhd|
+Z63 !s108 1525457234.000000
+Z64 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux2.vhd|
+Z65 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux2.vhd|
 !i113 1
 R11
 R12
@@ -355,32 +355,32 @@ VZ2S9?:6AASQObP4eIn?NC2
 !s100 `jRf:aW6BhJK2gE5Cb`9f3
 R6
 32
-R63
+R57
 !i10b 1
+R63
 R64
 R65
-R66
 !i113 1
 R11
 R12
 Emux4
-Z67 w1519297783
+Z66 w1519297783
 R1
 R2
 R3
-Z68 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux4.vhd
-Z69 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux4.vhd
+Z67 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux4.vhd
+Z68 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux4.vhd
 l0
 L5
 VCX0I7;69NIjL<7F^0e2HH3
 !s100 @CgICjI9c33H6M1e_>]c[1
 R6
 32
-R63
+R57
 !i10b 1
-R64
-Z70 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux4.vhd|
-Z71 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux4.vhd|
+R63
+Z69 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux4.vhd|
+Z70 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux4.vhd|
 !i113 1
 R11
 R12
@@ -394,40 +394,40 @@ Vl55>L8eM9IIf_XgiHIXjH3
 !s100 ZVH6e[>^nS1^MIGG=JSa?3
 R6
 32
-R63
+R57
 !i10b 1
-R64
+R63
+R69
 R70
-R71
 !i113 1
 R11
 R12
 Emux_flat
-Z72 w1523093655
-Z73 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
-Z74 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z71 w1523093655
+Z72 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
+Z73 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 R1
 R2
 R3
-Z75 8C:\Users\karim\Downloads\CUFE\Spring 2018\Arch\Project\test.vhd
-Z76 FC:\Users\karim\Downloads\CUFE\Spring 2018\Arch\Project\test.vhd
+Z74 8C:\Users\karim\Downloads\CUFE\Spring 2018\Arch\Project\test.vhd
+Z75 FC:\Users\karim\Downloads\CUFE\Spring 2018\Arch\Project\test.vhd
 l0
 L6
 V2miH57>:c>^3gaAZh^@jB2
 !s100 c6hzXFX7_o`40@fG2z@Wa0
 R33
 32
-Z77 !s110 1523093658
+Z76 !s110 1523093658
 !i10b 1
-Z78 !s108 1523093658.000000
-Z79 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\karim\Downloads\CUFE\Spring 2018\Arch\Project\test.vhd|
-Z80 !s107 C:\Users\karim\Downloads\CUFE\Spring 2018\Arch\Project\test.vhd|
+Z77 !s108 1523093658.000000
+Z78 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\karim\Downloads\CUFE\Spring 2018\Arch\Project\test.vhd|
+Z79 !s107 C:\Users\karim\Downloads\CUFE\Spring 2018\Arch\Project\test.vhd|
 !i113 1
 R38
 R39
 Artl
+R72
 R73
-R74
 R1
 R2
 DEx4 work 8 mux_flat 0 22 2miH57>:c>^3gaAZh^@jB2
@@ -437,32 +437,32 @@ V0HF>nk;6b9fJb>78O@zc42
 !s100 nH[Q;49Z9b_dAYnCTQM7@1
 R33
 32
-R77
+R76
 !i10b 1
+R77
 R78
 R79
-R80
 !i113 1
 R38
 R39
 Emylu
-Z81 w1523574276
+Z80 w1523574276
 R1
 R2
 R3
-Z82 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/LU.vhd
-Z83 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/LU.vhd
+Z81 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/LU.vhd
+Z82 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/LU.vhd
 l0
 L6
 V=cP>naIS<`jHBPzf4;6na2
 !s100 S9KX?Z_@QjO9aiIKF_<:G3
 R6
 32
-R63
+R57
 !i10b 1
-R22
-Z84 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/LU.vhd|
-Z85 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/LU.vhd|
+R63
+Z83 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/LU.vhd|
+Z84 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/LU.vhd|
 !i113 1
 R11
 R12
@@ -476,32 +476,32 @@ VFz>0iaLNl0l_`DTZa2SN90
 !s100 YI^X[jmNl0FFC:0?`0A7<3
 R6
 32
-R63
+R57
 !i10b 1
-R22
+R63
+R83
 R84
-R85
 !i113 1
 R11
 R12
 Enregister
-Z86 w1519907553
+Z85 w1519907553
 R1
 R2
 R3
-Z87 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/NRegister.vhd
-Z88 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/NRegister.vhd
+Z86 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/NRegister.vhd
+Z87 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/NRegister.vhd
 l0
 L4
 VeT1H`4M9D0SaZ3WDc0eYT2
 !s100 Q]H0Q8@z<E<PTDK4J2M<^3
 R6
 32
-R63
+R57
 !i10b 1
-R64
-Z89 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/NRegister.vhd|
-Z90 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/NRegister.vhd|
+R63
+Z88 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/NRegister.vhd|
+Z89 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/NRegister.vhd|
 !i113 1
 R11
 R12
@@ -515,32 +515,32 @@ VYJQ05nFJ^HBJVUi<fdFdo0
 !s100 Z5@o`Xe?h]4;[^`@bWGXO1
 R6
 32
-R63
+R57
 !i10b 1
-R64
+R63
+R88
 R89
-R90
 !i113 1
 R11
 R12
 Eoneregister
-Z91 w1519907377
+Z90 w1519907377
 R1
 R2
 R3
-Z92 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/OneRegister.vhd
-Z93 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/OneRegister.vhd
+Z91 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/OneRegister.vhd
+Z92 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/OneRegister.vhd
 l0
 L3
 Vd6Qj=abRWjmKNaH`C0ElZ1
 !s100 :nbW<L@VF8X;<B8Y]3Q;c2
 R6
 32
-R63
+R45
 !i10b 1
-R64
-Z94 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/OneRegister.vhd|
-Z95 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/OneRegister.vhd|
+R46
+Z93 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/OneRegister.vhd|
+Z94 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/OneRegister.vhd|
 !i113 1
 R11
 R12
@@ -554,38 +554,79 @@ VXYX?nLi^_Vk4Yd0zN=baO2
 !s100 NNXQJHc2UgUIBGIO2cVgO3
 R6
 32
-R63
+R45
 !i10b 1
-R64
+R46
+R93
 R94
-R95
+!i113 1
+R11
+R12
+Eregfile
+Z95 w1525457168
+R73
+R1
+R2
+R3
+Z96 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd
+Z97 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd
+l0
+L5
+VoIDz[b0ILQ2_I]l9?<z4D2
+!s100 <BXf>PIAA^UdBO4C9Gog?0
+R6
+32
+R45
+!i10b 1
+R46
+Z98 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd|
+Z99 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd|
+!i113 1
+R11
+R12
+Aregfilea
+R73
+R1
+R2
+DEx4 work 7 regfile 0 22 oIDz[b0ILQ2_I]l9?<z4D2
+l18
+L15
+V]M8ei[nb90W3]=YgE9fnm3
+!s100 @nQKDT8@8hAa9BLkdV66J2
+R6
+32
+R45
+!i10b 1
+R46
+R98
+R99
 !i113 1
 R11
 R12
 Eregisterfile
-Z96 w1523097011
-R74
+Z100 w1523097011
+R73
 R1
 R2
 R3
-Z97 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd
-Z98 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd
+R96
+R97
 l0
 L5
 V7^XM45KeXnU_2@B`oX:>I2
 !s100 b6^o16a:EPggg8H8j7O512
 R33
 32
-Z99 !s110 1523097376
+Z101 !s110 1523097376
 !i10b 1
-Z100 !s108 1523097376.000000
-Z101 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd|
-Z102 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd|
+Z102 !s108 1523097376.000000
+R98
+R99
 !i113 1
 R38
 R39
 Aregisterfilea
-R74
+R73
 R1
 R2
 DEx4 work 12 registerfile 0 22 7^XM45KeXnU_2@B`oX:>I2
@@ -595,17 +636,17 @@ VYbd8OjkhlmEI9DG[zKkCS1
 !s100 l56UD4Udj;2;7SJZHXOYg2
 R33
 32
-R99
-!i10b 1
-R100
 R101
+!i10b 1
 R102
+R98
+R99
 !i113 1
 R38
 R39
 Esyncram
 Z103 w1521562592
-R74
+R73
 R1
 R2
 R3
@@ -626,7 +667,7 @@ Z107 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ram.vhd|
 R11
 R12
 Asyncrama
-R74
+R73
 R1
 R2
 DEx4 work 7 syncram 0 22 @9BG]cCCemV83]X5^P`e<0

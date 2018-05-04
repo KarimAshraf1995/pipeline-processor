@@ -13,7 +13,7 @@ entity FetchStage is
 		PC16Addr : in std_logic_vector(15 downto 0);	--16 bits - Address stored in register 
 		PCNextSelector: in std_logic_vector(1 downto 0); --2 bits - MUX next instruction address, Fetch Buffer Control
 		PCMemAddr: in std_logic_vector(15 downto 0); -- 16 bits - Address stored in memory
-		StageOutput: out std_logic_vector(31 downto 0)
+		StageOutput: out std_logic_vector(31 downto 0) --32 Bits
 		);
 end entity FetchStage;
 
