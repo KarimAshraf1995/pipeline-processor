@@ -1,0 +1,98 @@
+{C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Full1Adder.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Full1Adder.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Full1Adder
+-- Compiling architecture Full1Adder_Implementation of Full1Adder
+
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux2.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux2.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Mux2
+-- Compiling architecture Mux2_Implementation of Mux2
+
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux4.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Mux4.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Mux4
+-- Compiling architecture Mux4_Implementation of Mux4
+
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ram.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ram.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity syncram
+-- Compiling architecture syncrama of syncram
+
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/FullNAdder.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/FullNAdder.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity FullNAdder
+-- Compiling architecture FullNAdder_Implementation of FullNAdder
+
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/NRegister.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/NRegister.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity nRegister
+-- Compiling architecture b_nRegister of nRegister
+
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/OneRegister.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/OneRegister.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity OneRegister
+-- Compiling architecture OneRegister_Implementation of OneRegister
+
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU1.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU1.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity AU1
+-- Compiling architecture AU1_Implementation of AU1
+
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU2.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU2.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity AU2
+-- Compiling architecture AU2_Implementation of AU2
+
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity AU3
+-- Compiling architecture AU3_Implementation of AU3
+
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/LU.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/LU.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity MyLU
+-- Compiling architecture LU_Implementation of MyLU
+
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ALU.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ALU.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity ALU
+-- Compiling architecture ALU_Implementation of ALU
+
+} {} {}}

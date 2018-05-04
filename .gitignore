@@ -1,0 +1,5 @@
+# bakeup files
+*.bak
+
+# assembler
+asm/
