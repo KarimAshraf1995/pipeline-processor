@@ -11,7 +11,7 @@ entity FetchStage is
 		FetchBufferStall: in std_logic; -- 1 bit to stall upper Fetch
 		Jmp16R : in std_logic_vector (15 downto 0); -- 16 bits - Address stored in register but for Jumps that need a condition
 		PC16Addr : in std_logic_vector(15 downto 0);	--16 bits - Address stored in register 
-		PCNextSelector: in std_logic_vector(1 downto 0); --2 bits - MUX next instruction address, Fetch Buffer Control
+		PCMuxSelector: in std_logic_vector(1 downto 0); --2 bits - MUX next instruction address, Fetch Buffer Control
 		PCMemAddr: in std_logic_vector(15 downto 0); -- 16 bits - Address stored in memory
 		StageOutput: out std_logic_vector(31 downto 0) --32 Bits
 		);
@@ -64,7 +64,7 @@ signal StageBufferLowerOut: std_logic_vector (15 downto 0);
 signal StallLower: std_logic;
 Begin 
 	
-	PC_MUX: Mux4 generic map(width=>16) port map(PCNextSelector,PC16Addr,PCMemAddr,PCAdderFeedback,Jmp16R,PCMuxOut);
+	PC_MUX: Mux4 generic map(width=>16) port map(PCMuxSelector,PC16Addr,PCMemAddr,PCAdderFeedback,Jmp16R,PCMuxOut);
 	PCAdderFeedback <= PCRegOut + 1;
 	PC: nRegister generic map(n=>16) port map(CLK,'0',PCEnble,PCMuxOut,PCRegOut);
 	Instruction_MEM: syncram generic map(addr_width=>9, width=>16) port map(CLK,'0',PCRegOut,(others=>'0'),FetchedInstruction);

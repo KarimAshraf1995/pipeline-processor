@@ -9,7 +9,7 @@ entity MemoryStage is
 	port (CLK : in std_logic;
 		RST: in std_logic;
 		MemoryBufferFlush: in std_logic;
-		MemoryControlM: in std_logic_vector (3 downto 0); --3 bits , Control unit memory
+		MemoryControlM: in std_logic_vector (2 downto 0); --3 bits , Control unit memory
 		ExecuteStage: in std_logic_vector(34 downto 0); --35 bits Out of Decode Stage Buffer (Previous stage)
 		MemoryDataOut: out std_logic_vector(15 downto 0); --Read value from memory
 		OutPort: out std_logic_vector(15 downto 0); -- OUT port

@@ -22,6 +22,16 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity Mux4
 -- Compiling architecture Mux4_Implementation of Mux4
 
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/DecodeStage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/DecodeStage.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity DecodeStage
+-- Compiling architecture DecodeStage_Implementation of DecodeStage
+
 } {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ram.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ram.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
@@ -56,6 +66,16 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity regFile
 -- Compiling architecture regFilea of regFile
 
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ExecuteStage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ExecuteStage.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity ExecuteStage
+-- Compiling architecture ExecuteStage_Implementation of ExecuteStage
+
 } {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/OneRegister.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/OneRegister.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
@@ -71,6 +91,16 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Loading package std_logic_1164
 -- Compiling entity AU1
 -- Compiling architecture AU1_Implementation of AU1
+
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/WriteBackStage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/WriteBackStage.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity WriteBackStage
+-- Compiling architecture WriteBackStage_Implementation of WriteBackStage
 
 } {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU2.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU2.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
