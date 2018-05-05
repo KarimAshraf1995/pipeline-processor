@@ -12,7 +12,7 @@ entity ExecuteStage is
 		JMPIndicator: in std_logic_vector (1 downto 0); --Jump Indicator
 		ExecuteControlEX: in std_logic_vector (11 downto 0); --12 bits , Control unit execute 
 		MemoryFlags: in std_logic_vector(3 downto 0); --Flags from memory
-		DecodeStage: in std_logic_vector(47 downto 0); --48 bits Out of Decode Stage Buffer
+		DecodeStage: in std_logic_vector(50 downto 0); --51 bits Out of Decode Stage Buffer (Previous stage)
 		OP2Mux2FU: out std_logic_vector(15 downto 0); -- Mem Write Value to FU
 		StageOutput: out std_logic_vector(34 downto 0) -- StageOutput 35 Bit
 		);
@@ -84,8 +84,8 @@ Begin
 				'1' when JMPIndicator="11" and ALU_flags_Rout(1)='1' else '0';
 	-- END Branch Decision Unit
 	
-	--TODO: REPLACE THESE zeros with R2 
-	StageBufferIn <= "000" & OP2MuxOut & EXout1 ;
+	
+	StageBufferIn <= DecodeStage(50 downto 48) & OP2MuxOut & EXout1 ;
 	ExecuteBuffer: nRegister generic map(n=>35) port map(CLK,ExecuteBufferFlush, '1', StageBufferIn, StageOutput);
 	
 	

@@ -10,13 +10,13 @@ entity DecodeStage is
 		WriteBackEnable: in std_logic; --Enable writeback to RegFile
 		DecodeBufferFlush: in std_logic; --Flush Decode Buffer
 		ImmMuxSelector: in std_logic_vector(1 downto 0); --From CU,
-		FetchStage: in std_logic_vector (31 downto 0); --Output of the Fetch Stage Buffer
+		FetchStage: in std_logic_vector (31 downto 0); --Output of the Fetch Stage Buffer (Previous stage)
 		WriteBackAddress: in std_logic_vector (2 downto 0); --Which Reg to writeback in
 		WriteBackValue: in std_logic_vector (15 downto 0); --writeback value
 		InPort: in std_logic_vector (15 downto 0); -- Input port: 16 bits
 		FR1,FR2: in std_logic_vector(15 downto 0); -- Forwarded R1 and R2
 		R1Out: out std_logic_vector (15 downto 0); --16 bits - Address stored in register 
-		StageOutput: out std_logic_vector(47 downto 0) --48 bits
+		StageOutput: out std_logic_vector(50 downto 0) --51 bits
 		);
 end entity DecodeStage;
 
@@ -62,7 +62,7 @@ signal value1extended: std_logic_vector(15 downto 0);
 signal ImmMuxOut: std_logic_vector(15 downto 0);
 signal RegR1,RegR2: std_logic_vector(15 downto 0);
 signal R1Mux0Out,R1Mux1Out,R2MuxOut: std_logic_vector(15 downto 0);
-signal StageBufferIn : std_logic_vector(47 downto 0);
+signal StageBufferIn : std_logic_vector(50 downto 0);
 Begin  
 	
 	value0extended <= "00000000000"&FetchStage(13 downto 9);
@@ -74,11 +74,11 @@ Begin
 	R1Mux0: Mux2 generic map(width=>16) port map(RMuxSelector, RegR1,FR1,R1Mux0Out);
 	R1Out<=R1Mux0Out;
 	
-	R1Mux1: Mux2 generic map(width=>16) port map(InMuxSelector, R1Mux0Out,FR1,R1Mux1Out);
+	R1Mux1: Mux2 generic map(width=>16) port map(InMuxSelector, R1Mux0Out,InPort,R1Mux1Out);
 	R2Mux: Mux2 generic map(width=>16) port map(RMuxSelector, RegR2,FR2,R2MuxOut);
 	
 	
-	StageBufferIn <= ImmMuxOut&R2MuxOut&R1Mux1Out;
+	StageBufferIn <= FetchStage(8 downto 6)&ImmMuxOut&R2MuxOut&R1Mux1Out;
 	DecodeBuffer: nRegister generic map(n=>48) port map(CLK,DecodeBufferFlush, '1', StageBufferIn, StageOutput);
 	
 	

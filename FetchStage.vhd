@@ -67,7 +67,7 @@ Begin
 	PC_MUX: Mux4 generic map(width=>16) port map(PCNextSelector,PC16Addr,PCMemAddr,PCAdderFeedback,Jmp16R,PCMuxOut);
 	PCAdderFeedback <= PCRegOut + 1;
 	PC: nRegister generic map(n=>16) port map(CLK,'0',PCEnble,PCMuxOut,PCRegOut);
-	Instruction_MEM: syncram generic map(addr_width=>9, width=>16) port map(CLK,'0',(others=>'0'),FetchedInstruction);
+	Instruction_MEM: syncram generic map(addr_width=>9, width=>16) port map(CLK,'0',PCRegOut,(others=>'0'),FetchedInstruction);
 	UPPER_MUX: Mux2 generic map(width=>16) port map(UpperMuxSelect,FetchedInstruction,UpperMuxOut);
 	
 	StallLower <= not FetchBufferStall;

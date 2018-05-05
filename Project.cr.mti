@@ -80,14 +80,6 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity AU2
 -- Compiling architecture AU2_Implementation of AU2
 
-} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity AU3
--- Compiling architecture AU3_Implementation of AU3
-
 } {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/LU.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/LU.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
@@ -95,6 +87,14 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Loading package std_logic_1164
 -- Compiling entity MyLU
 -- Compiling architecture LU_Implementation of MyLU
+
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity AU3
+-- Compiling architecture AU3_Implementation of AU3
 
 } {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ALU.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ALU.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
