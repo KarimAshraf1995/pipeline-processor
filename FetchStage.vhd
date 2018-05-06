@@ -5,7 +5,7 @@ use ieee.std_logic_unsigned.all;
 
 entity FetchStage is 
 	port (CLK : in std_logic;
-		PCEnble : in std_logic; -- PC enable - HDU
+		PCEnable : in std_logic; -- PC enable - HDU
 		UpperMuxSelect: in std_logic; -- 1 bit upper MUX selector
 		FetchBufferFlush: in std_logic; -- 1 bit to clear both upper&lower
 		FetchBufferStall: in std_logic; -- 1 bit to stall upper Fetch
@@ -66,7 +66,7 @@ Begin
 	
 	PC_MUX: Mux4 generic map(width=>16) port map(PCMuxSelector,PC16Addr,PCMemAddr,PCAdderFeedback,Jmp16R,PCMuxOut);
 	PCAdderFeedback <= PCRegOut + 1;
-	PC: nRegister generic map(n=>16) port map(CLK,'0',PCEnble,PCMuxOut,PCRegOut);
+	PC: nRegister generic map(n=>16) port map(CLK,'0',PCEnable,PCMuxOut,PCRegOut);
 	Instruction_MEM: syncram generic map(addr_width=>9, width=>16) port map(CLK,'0',PCRegOut,(others=>'0'),FetchedInstruction);
 	UPPER_MUX: Mux2 generic map(width=>16) port map(UpperMuxSelect,FetchedInstruction,UpperMuxOut);
 	
