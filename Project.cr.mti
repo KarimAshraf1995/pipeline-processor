@@ -86,6 +86,14 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity regFile
 -- Compiling architecture regFilea of regFile
 
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU1.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU1.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity AU1
+-- Compiling architecture AU1_Implementation of AU1
+
 } {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ExecuteStage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ExecuteStage.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
@@ -104,13 +112,13 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity OneRegister
 -- Compiling architecture OneRegister_Implementation of OneRegister
 
-} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU1.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU1.vhd}
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU2.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU2.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity AU1
--- Compiling architecture AU1_Implementation of AU1
+-- Compiling entity AU2
+-- Compiling architecture AU2_Implementation of AU2
 
 } {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/WriteBackStage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/WriteBackStage.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -122,13 +130,13 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity WriteBackStage
 -- Compiling architecture WriteBackStage_Implementation of WriteBackStage
 
-} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU2.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU2.vhd}
+} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity AU2
--- Compiling architecture AU2_Implementation of AU2
+-- Compiling entity AU3
+-- Compiling architecture AU3_Implementation of AU3
 
 } {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/LU.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/LU.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -137,14 +145,6 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Loading package std_logic_1164
 -- Compiling entity MyLU
 -- Compiling architecture LU_Implementation of MyLU
-
-} {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/AU3.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity AU3
--- Compiling architecture AU3_Implementation of AU3
 
 } {} {}} {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ALU.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ALU.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
