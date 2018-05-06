@@ -735,7 +735,7 @@ R116
 R11
 R12
 Eprocessor
-Z117 w1525641917
+Z117 w1525643947
 R31
 R32
 R1
@@ -745,13 +745,13 @@ Z118 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Processor.vhd
 Z119 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Processor.vhd
 l0
 L6
-V=ZL0]eF4ZPI^Ul0WiCeRe1
-!s100 bJMFJ83A2XDS@;_HSkG;e3
+V[PoiPn11YoaGZ3@iIP0T73
+!s100 :4;P467P;5VX?CCmfX5OQ0
 R6
 32
-Z120 !s110 1525641922
+Z120 !s110 1525643952
 !i10b 1
-Z121 !s108 1525641922.000000
+Z121 !s108 1525643952.000000
 Z122 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Processor.vhd|
 Z123 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/Processor.vhd|
 !i113 1
@@ -762,11 +762,11 @@ R31
 R32
 R1
 R2
-Z124 DEx4 work 9 processor 0 22 =ZL0]eF4ZPI^Ul0WiCeRe1
-l127
+DEx4 work 9 processor 0 22 [PoiPn11YoaGZ3@iIP0T73
+l136
 L16
-V@<2:Q9nc?dadPScAnWeXn0
-!s100 Q1dfEPMZaQmW3MH@lh@[[2
+V^a>ZnIPoSUDLA<7cOQ32D0
+!s100 IATVUn<jNEfFF6IXmZzFZ3
 R6
 32
 R120
@@ -778,13 +778,13 @@ R123
 R11
 R12
 Eregfile
-Z125 w1525457168
+Z124 w1525457168
 R95
 R1
 R2
 R3
-Z126 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd
-Z127 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd
+Z125 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd
+Z126 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd
 l0
 L5
 VoIDz[b0ILQ2_I]l9?<z4D2
@@ -794,8 +794,8 @@ R6
 R52
 !i10b 1
 R53
-Z128 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd|
-Z129 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd|
+Z127 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd|
+Z128 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/RegisterFile.vhd|
 !i113 1
 R11
 R12
@@ -813,30 +813,30 @@ R6
 R52
 !i10b 1
 R53
+R127
 R128
-R129
 !i113 1
 R11
 R12
 Eregisterfile
-Z130 w1523097011
+Z129 w1523097011
 R95
 R1
 R2
 R3
+R125
 R126
-R127
 l0
 L5
 V7^XM45KeXnU_2@B`oX:>I2
 !s100 b6^o16a:EPggg8H8j7O512
 R42
 32
-Z131 !s110 1523097376
+Z130 !s110 1523097376
 !i10b 1
-Z132 !s108 1523097376.000000
+Z131 !s108 1523097376.000000
+R127
 R128
-R129
 !i113 1
 R47
 R48
@@ -851,22 +851,22 @@ VYbd8OjkhlmEI9DG[zKkCS1
 !s100 l56UD4Udj;2;7SJZHXOYg2
 R42
 32
-R131
+R130
 !i10b 1
-R132
+R131
+R127
 R128
-R129
 !i113 1
 R47
 R48
 Esyncram
-Z133 w1521562592
+Z132 w1521562592
 R95
 R1
 R2
 R3
-Z134 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ram.vhd
-Z135 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ram.vhd
+Z133 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ram.vhd
+Z134 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ram.vhd
 l0
 L5
 V@9BG]cCCemV83]X5^P`e<0
@@ -876,8 +876,8 @@ R6
 R7
 !i10b 1
 R8
-Z136 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ram.vhd|
-Z137 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ram.vhd|
+Z135 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ram.vhd|
+Z136 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/ram.vhd|
 !i113 1
 R11
 R12
@@ -895,20 +895,20 @@ R6
 R7
 !i10b 1
 R8
+R135
 R136
-R137
 !i113 1
 R11
 R12
 Ewritebackstage
-Z138 w1525512406
+Z137 w1525512406
 R31
 R32
 R1
 R2
 R3
-Z139 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/WriteBackStage.vhd
-Z140 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/WriteBackStage.vhd
+Z138 8C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/WriteBackStage.vhd
+Z139 FC:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/WriteBackStage.vhd
 l0
 L5
 VEocenY`PRJo0IL]6hnV:G0
@@ -918,8 +918,8 @@ R6
 R59
 !i10b 1
 R60
-Z141 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/WriteBackStage.vhd|
-Z142 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/WriteBackStage.vhd|
+Z140 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/WriteBackStage.vhd|
+Z141 !s107 C:/Users/karim/Downloads/CUFE/Spring 2018/Arch/Project/WriteBackStage.vhd|
 !i113 1
 R11
 R12
@@ -938,8 +938,8 @@ R6
 R59
 !i10b 1
 R60
+R140
 R141
-R142
 !i113 1
 R11
 R12
