@@ -223,6 +223,8 @@ Begin
 
 	MemoryBufferWB: nRegister port map (CLK,FlushBuffers_CU_DExMWB,'1',WritebackControlWB_Ex_M,WritebackControlWB_M_WB);
 	
+	WriteBackEnable_M_D <= WritebackControlWB_M_WB(0);
+	
 	WriteBack: WriteBackStage port map
 		(
 		CLK => CLK,
@@ -231,6 +233,6 @@ Begin
 		WriteBackValue => WriteBackValue_WB_D
 		);
 
-
+	
 	
 end Architecture;
