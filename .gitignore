@@ -3,3 +3,9 @@
 
 # assembler
 asm/
+
+# modelsim files
+work/
+*.mpf
+*.wlf
+*.mti
