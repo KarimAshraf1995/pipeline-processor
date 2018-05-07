@@ -1,0 +1,24 @@
+Make the changes in the diagram into the code (recheck all wires that go in or out of the FU)
+-----------------------
+//the following code is for FS1 and FR1
+If Decode WB bits == 11 && R1 from fetch == WB address of decode
+Fs1 = 1
+FR1 = Ex mem address
+else if WB of Mem == 1X && R1 from fetch == WB address from decode
+FS1 = 1
+	if WB == 11:
+		FR1 = Mem address (concatenate zeros)
+	else
+		FR1 = Mem value
+
+//the following code is for FS2 and FR2
+If Decode WB bits == 11 && R2 from fetch == WB address of decode
+Fs2 = 1
+FR2 = Ex mem address
+else if WB of Mem == 1X && R2 from fetch == WB address from decode
+FS2 = 1
+	if WB == 11:
+		FR2 = Mem address (concatenate zeros)
+	else
+		FR2 = Mem value
+

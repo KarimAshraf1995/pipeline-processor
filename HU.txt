@@ -1,0 +1,16 @@
+Hazard unit wiring changed check diagram
+---------------------------------
+//I will define first some signals from the input to make things easy to understand
+iR1 = 3-5 of instruction memory output
+iR2 = 6-8 of instruction memory output
+bR2 = 6-8 of fetch buffer
+bOp = 0-2 of fetch buffer 
+
+if WB == 10
+&& iR1 == bR2
+&& iR2 == bR2
+&& bOp != 100 
+pc enable - hu = 0 (else it should be = 1)
+flush lower bits of fetch buffer (but stall overrides this case I just don't want to make the new instruction enter)
+
+

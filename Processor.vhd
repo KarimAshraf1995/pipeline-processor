@@ -48,7 +48,7 @@ component ExecuteStage is
 		ExecuteBufferFlush: in std_logic;
 		ForceJMP: out std_logic;
 		JMPIndicator: in std_logic_vector (1 downto 0); --Jump Indicator
-		ExecuteControlEX: in std_logic_vector (11 downto 0); --12 bits , Control unit execute 
+		ExecuteControlEX: in std_logic_vector (12 downto 0); --13 bits , Control unit execute 
 		MemoryFlags: in std_logic_vector(3 downto 0); --Flags from memory
 		DecodeStage: in std_logic_vector(50 downto 0); --51 bits Out of Decode Stage Buffer (Previous stage)
 		OP2Mux2FU: out std_logic_vector(15 downto 0); -- Mem Write Value to FU
@@ -75,6 +75,7 @@ component WriteBackStage is
 end component;
 component ControlUnit is 
 	port (CLK : in std_logic;
+		INT: in std_logic;
 		ForceJMP: in std_logic;
 		FetchStage: in std_logic_vector(31 downto 0); --Output of FetchStage buffer
 		FlushBuffers: out std_logic;	-- FLush Decode,Execute and Memory Buffers
@@ -89,7 +90,7 @@ component ControlUnit is
 		JMPIndicator: out std_logic_vector(1 downto 0);
 		WritebackControlWB: out std_logic_vector(1 downto 0);
 		MemoryControlM: out std_logic_vector(2 downto 0);
-		ExecuteControlEX: out std_logic_vector (11 downto 0)
+		ExecuteControlEX: out std_logic_vector (12 downto 0)
 		);
 end component;
 component nRegister is
@@ -111,7 +112,7 @@ signal FR1_FU_D,FR2_FU_D: std_logic_vector (15 downto 0);
 signal PCMuxSelector_CU_F, DecodeImmMuxSelector_CU_D: std_logic_vector(1 downto 0);
 signal WriteBackAddress_M_D: std_logic_vector(2 downto 0);
 signal RMuxSelector_FU_D,WriteBackEnable_M_D: std_logic;
-signal MemoryDataRead_M,OP2Mux2_Ex_FU: std_logic_vector (15 downto 0);
+signal MemoryDataRead_M,ExecuteMemAddress_Ex_FU: std_logic_vector (15 downto 0);
 
 
 -- Single Stages
@@ -123,11 +124,11 @@ signal MemoryOutput: std_logic_vector(34 downto 0);
 -- Control Unit and its buffers
 signal JMPIndicator_CU_D,WritebackControlWB_CU_D : std_logic_vector(1 downto 0);
 signal MemoryControlM_CU_D: std_logic_vector(2 downto 0);
-signal ExecuteControlEX_CU_D: std_logic_vector (11 downto 0);
+signal ExecuteControlEX_CU_D: std_logic_vector (12 downto 0);
 
 signal JMPIndicator_D_Ex,WritebackControlWB_D_Ex : std_logic_vector(1 downto 0);
 signal MemoryControlM_D_Ex: std_logic_vector(2 downto 0);
-signal ExecuteControlEX_D_Ex: std_logic_vector (11 downto 0);
+signal ExecuteControlEX_D_Ex: std_logic_vector (12 downto 0);
 
 
 signal WritebackControlWB_Ex_M,WritebackControlWB_M_WB : std_logic_vector(1 downto 0);
@@ -138,6 +139,7 @@ Begin
 	
 	Control: ControlUnit port map
 			(CLK => CLK,
+			INT => INT,
 			ForceJMP => ForceJMP_EX_CU,
 			FetchStage => FetchOutput,
 			FlushBuffers => FlushBuffers_CU_DExMWB,
@@ -187,10 +189,10 @@ Begin
 			StageOutput => DecodeOutput
 			);
 
-	DecodeBufferJmpIndicator: nRegister port map (CLK,FlushBuffers_CU_DExMWB,'1',JMPIndicator_CU_D,JMPIndicator_D_Ex);
-	DecodeBufferWB: nRegister port map (CLK,FlushBuffers_CU_DExMWB,'1',WritebackControlWB_CU_D,WritebackControlWB_D_Ex);
-	DecodeBufferM: nRegister port map (CLK,FlushBuffers_CU_DExMWB,'1',MemoryControlM_CU_D,MemoryControlM_D_Ex);
-	DecodeBufferEx: nRegister port map (CLK,FlushBuffers_CU_DExMWB,'1',ExecuteControlEX_CU_D,ExecuteControlEX_D_Ex);
+	DecodeBufferJmpIndicator: nRegister generic map(n=>2) port map (CLK,FlushBuffers_CU_DExMWB,'1',JMPIndicator_CU_D,JMPIndicator_D_Ex);
+	DecodeBufferWB: nRegister generic map(n=>2) port map (CLK,FlushBuffers_CU_DExMWB,'1',WritebackControlWB_CU_D,WritebackControlWB_D_Ex);
+	DecodeBufferM: nRegister generic map(n=>3) port map (CLK,FlushBuffers_CU_DExMWB,'1',MemoryControlM_CU_D,MemoryControlM_D_Ex);
+	DecodeBufferEx: nRegister generic map(n=>13) port map (CLK,FlushBuffers_CU_DExMWB,'1',ExecuteControlEX_CU_D,ExecuteControlEX_D_Ex);
 	
 	
 	Execute: ExecuteStage port map
@@ -202,12 +204,12 @@ Begin
 			ExecuteControlEX => ExecuteControlEX_D_Ex,
 			MemoryFlags => MemoryDataRead_M(3 downto 0),
 			DecodeStage => DecodeOutput,
-			OP2Mux2FU => OP2Mux2_Ex_FU,
+			OP2Mux2FU => ExecuteMemAddress_Ex_FU,
 			StageOutput => ExecuteOutput
 			);
 
-	ExecuteBufferM: nRegister port map (CLK,FlushBuffers_CU_DExMWB,'1',MemoryControlM_D_Ex,MemoryControlM_Ex_M);
-	ExecuteBufferWB: nRegister port map (CLK,FlushBuffers_CU_DExMWB,'1',WritebackControlWB_D_Ex,WritebackControlWB_Ex_M);
+	ExecuteBufferM: nRegister generic map(n=>3) port map (CLK,FlushBuffers_CU_DExMWB,'1',MemoryControlM_D_Ex,MemoryControlM_Ex_M);
+	ExecuteBufferWB: nRegister generic map(n=>2) port map (CLK,FlushBuffers_CU_DExMWB,'1',WritebackControlWB_D_Ex,WritebackControlWB_Ex_M);
 	
 	Memory: MemoryStage port map
 		(
@@ -221,8 +223,9 @@ Begin
 		StageOutput => MemoryOutput
 		);
 
-	MemoryBufferWB: nRegister port map (CLK,FlushBuffers_CU_DExMWB,'1',WritebackControlWB_Ex_M,WritebackControlWB_M_WB);
+	MemoryBufferWB: nRegister generic map(n=>2) port map (CLK,FlushBuffers_CU_DExMWB,'1',WritebackControlWB_Ex_M,WritebackControlWB_M_WB);
 	
+	WriteBackAddress_M_D <= MemoryOutput(34 downto 32);
 	WriteBackEnable_M_D <= WritebackControlWB_M_WB(0);
 	
 	WriteBack: WriteBackStage port map

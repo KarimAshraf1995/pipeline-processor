@@ -68,7 +68,7 @@ Begin
 	value0extended <= "00000000000"&FetchStage(13 downto 9);
 	value1extended <= "0000000"&FetchStage(14 downto 6);
 	
-	ImmMux: Mux4 generic map(width=>16) port map(ImmMuxSelector,value0extended,FetchStage(31 downto 16),value1extended,value1extended,ImmMuxOut);
+	ImmMux: Mux4 generic map(width=>16) port map(ImmMuxSelector,value0extended,FetchStage(31 downto 16),value1extended,x"0001",ImmMuxOut);
 	RegisterFile: regFile generic map(addr_width=>3,width=>16) port map (CLK,WriteBackEnable,FetchStage(5 downto 3),FetchStage(8 downto 6),WriteBackAddress,WriteBackValue,RegR1,RegR2);
 	
 	R1Mux0: Mux2 generic map(width=>16) port map(RMuxSelector, RegR1,FR1,R1Mux0Out);

@@ -1,0 +1,73 @@
+Check: the 2bit register acts sequential even in reseting it to zero
+--------------
+Changes in diagram: (not saved so redo)
+Interrupt is an input to CU or Interrupt Unit
+
+flags register value is an input to OP2 MUX
+Ex increased an bit
+
+imm value mux has 11 as 01
+---------------
+Interrupt unit: (could be just code inside CU if you want although i prefer a separate module)
+hardware: 2 registers 
+a 1 bit register gotIReg
+a 16 bit register
+a 1 bit register called doIReg
+
+outputs a doInterrupt signal
+
+if interrupt pulse: 
+set gotIReg to 1
+set 16 bit register to lower 16 bits of the fetch buffer (notices that these two registers don't act according to the clk; their clk is the interrupt pulse)
+
+if gotIReg == 1 && 16 bit register != 16 bit of lower fetch buffer && CU 2 bit register == 0 && counter == 0:
+set doIReg to 1 (these set will actually change the value in the next clock cycle so its clk is the actual clk)
+
+if doIReg == 1:
+reset (async) both gotIreg and 16 bit register
+reset doIreg in the next clk cycle
+
+wire the output of doIreg to the doInterrupt signal 
+------------------
+IN CU:
+
+if doInterrupt && counter == 0:
+set counter = 4 
+set register = 3
+
+
+//the following overrides whatever in fetch buffer so check this first
+if regsiter == 3
+{
+
+if counter == 4:
+Imm value mux  = 3 done 
+upper mux = 1 done
+EX bits: 01 0 0000 0 0 0 1 0 0 done
+M bits: 0 1 0 done
+WB bits: 0 0 done
+
+if counter == 3:
+Ex bits: 10 0 1011 0 0 1 0 0 0 done
+Mem bits: 1 0 0 done
+WB: 0 0 0 done
+
+if counter == 2:
+PC mux = 1
+imm value mux: 01 done
+ex bits: 10 1 1011 0 0 1 0 0  done
+mem units: 1 0 0 done
+wb: 0 0 0 done
+
+
+if counter == 1:
+all CU bits = 0 Imm,Ex,M,WB, done
+register = 0 (sequential) done
+
+
+}
+
+
+
+
+

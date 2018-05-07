@@ -62,6 +62,7 @@ signal UpperMuxOut: std_logic_vector (15 downto 0);
 signal StageBufferUpperOut: std_logic_vector (15 downto 0);
 signal StageBufferLowerOut: std_logic_vector (15 downto 0);
 signal StallLower: std_logic;
+signal FlushLower: std_logic;
 Begin 
 	
 	PC_MUX: Mux4 generic map(width=>16) port map(PCMuxSelector,PC16Addr,PCMemAddr,PCAdderFeedback,Jmp16R,PCMuxOut);
@@ -71,7 +72,8 @@ Begin
 	UPPER_MUX: Mux2 generic map(width=>16) port map(UpperMuxSelect,FetchedInstruction,UpperMuxOut);
 	
 	StallLower <= not FetchBufferStall;
-	LowerFetchBuffer: nRegister generic map(n=>16) port map(CLK,FetchBufferFlush, StallLower, FetchedInstruction, StageOutput(15 downto 0));
+	FlushLower <= FetchBufferFlush and not StallLower;
+	LowerFetchBuffer: nRegister generic map(n=>16) port map(CLK,FlushLower, StallLower, FetchedInstruction, StageOutput(15 downto 0));
 	UpperFetchBuffer: nRegister generic map(n=>16) port map(CLK,FetchBufferFlush, '1',UpperMuxOut, StageOutput(31 downto 16));
 	
 	

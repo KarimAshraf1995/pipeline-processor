@@ -9,12 +9,13 @@ Architecture OneRegister_Implementation of OneRegister is
 begin
 process(clk,rst)
 begin
-if(rst = '1') then
+
+if clk'event and clk = '1' then   
+	if(rst = '1') then
         q <= '0';
-elsif clk'event and clk = '1' then   
-	if (enable = '1') then          
+	elsif (enable = '1') then          
  	    q <= d;
-  end if;
+	end if;
 end if;
 end process;
 end OneRegister_Implementation;
