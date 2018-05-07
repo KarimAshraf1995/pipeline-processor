@@ -4,9 +4,9 @@ Make the changes in the diagram into the code (recheck all wires that go in or o
 If Decode WB bits == 11 && R1 from fetch == WB address of decode
 Fs1 = 1
 FR1 = Ex mem address
-else if WB of Mem == 1X && R1 from fetch == WB address from decode
+else if WB of Mem == 1X && R1 from fetch == WB address from execute
 FS1 = 1
-	if WB == 11:
+	if WB of Ex == 11:
 		FR1 = Mem address (concatenate zeros)
 	else
 		FR1 = Mem value
@@ -15,9 +15,9 @@ FS1 = 1
 If Decode WB bits == 11 && R2 from fetch == WB address of decode
 Fs2 = 1
 FR2 = Ex mem address
-else if WB of Mem == 1X && R2 from fetch == WB address from decode
+else if WB of Mem == 1X && R2 from fetch == WB address from execute
 FS2 = 1
-	if WB == 11:
+	if WB of Ex == 11:
 		FR2 = Mem address (concatenate zeros)
 	else
 		FR2 = Mem value

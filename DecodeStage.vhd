@@ -6,7 +6,8 @@ use ieee.std_logic_unsigned.all;
 entity DecodeStage is 
 	port (CLK : in std_logic;
 		InMuxSelector: in std_logic; -- IN mux selector
-		RMuxSelector: in std_logic; --From FU, R1 Mux and R2 Mux selectors
+		R1MuxSelector: in std_logic; --From FU, R1 Mux Mux selector
+		R2MuxSelector: in std_logic; --From FU, R2 Mux selector
 		WriteBackEnable: in std_logic; --Enable writeback to RegFile
 		DecodeBufferFlush: in std_logic; --Flush Decode Buffer
 		ImmMuxSelector: in std_logic_vector(1 downto 0); --From CU,
@@ -71,15 +72,15 @@ Begin
 	ImmMux: Mux4 generic map(width=>16) port map(ImmMuxSelector,value0extended,FetchStage(31 downto 16),value1extended,x"0001",ImmMuxOut);
 	RegisterFile: regFile generic map(addr_width=>3,width=>16) port map (CLK,WriteBackEnable,FetchStage(5 downto 3),FetchStage(8 downto 6),WriteBackAddress,WriteBackValue,RegR1,RegR2);
 	
-	R1Mux0: Mux2 generic map(width=>16) port map(RMuxSelector, RegR1,FR1,R1Mux0Out);
+	R1Mux0: Mux2 generic map(width=>16) port map(R1MuxSelector, RegR1,FR1,R1Mux0Out);
 	R1Out<=R1Mux0Out;
 	
 	R1Mux1: Mux2 generic map(width=>16) port map(InMuxSelector, R1Mux0Out,InPort,R1Mux1Out);
-	R2Mux: Mux2 generic map(width=>16) port map(RMuxSelector, RegR2,FR2,R2MuxOut);
+	R2Mux: Mux2 generic map(width=>16) port map(R2MuxSelector, RegR2,FR2,R2MuxOut);
 	
 	
 	StageBufferIn <= FetchStage(8 downto 6)&ImmMuxOut&R2MuxOut&R1Mux1Out;
-	DecodeBuffer: nRegister generic map(n=>48) port map(CLK,DecodeBufferFlush, '1', StageBufferIn, StageOutput);
+	DecodeBuffer: nRegister generic map(n=>51) port map(CLK,DecodeBufferFlush, '1', StageBufferIn, StageOutput);
 	
 	
 	
