@@ -175,56 +175,53 @@ Begin
 	
 	
 	
-	-- TODO change bit order here
-	-- TODO replace X with missing bit(s)
 	-- i) EX CU bits
 	ExecuteControlEX <= 
-	"0100000000100" when InnerRegister="11" and counter="100" else -- If register == 3 and counter == 4
-	"1001011001000" when InnerRegister="11" and counter="011" else -- If register == 3 and counter == 3
-	"1011011001000" when InnerRegister="11" and counter="010" else -- If register == 3 and counter == 2
+	"0010000000001" when InnerRegister="11" and counter="100" else -- If register == 3 and counter == 4
+	"0001001011010" when InnerRegister="11" and counter="011" else -- If register == 3 and counter == 3
+	"0001001011110" when InnerRegister="11" and counter="010" else -- If register == 3 and counter == 2
 	"0000000000000" when InnerRegister="11" and counter="001" else -- If register == 3 and counter == 1
-	"1001010001000" when InnerRegister="01" and counter="010" else -- If register == 1 and counter == 2
-	"0000000100010" when InnerRegister="01" and counter="001" else -- If register == 1 and counter == 1
+	"0001001010010" when InnerRegister="01" and counter="010" else -- If register == 1 and counter == 2
+	"0100010000000" when InnerRegister="01" and counter="001" else -- If register == 1 and counter == 1
 	-- 2.If LDM&upper 16 bits are not the same instruction bits
-	"0100000000100" when FetchStage(15 downto 13)="100" and FetchStage(15 downto 0)/=FetchStage(31 downto 16) else 
+	"0010000000001" when FetchStage(15 downto 13)="100" and FetchStage(15 downto 0)/=FetchStage(31 downto 16) else 
 	-- 3.If NULL type
-	"0000110100000" when FetchStage(15 downto 13)="000" and FetchStage(2 downto 0)="001" else -- If SETC
-	"0000111100000" when FetchStage(15 downto 13)="000" and FetchStage(2 downto 0)="010" else -- If CLRC
-	"1001010001000" when FetchStage(15 downto 13)="000" and FetchStage(2 downto 0)="011" else -- If RET 
-	"1001010001000" when FetchStage(15 downto 13)="000" and FetchStage(2 downto 0)="100" else -- If RTI
+	"0000010110000" when FetchStage(15 downto 13)="000" and FetchStage(2 downto 0)="001" else -- If SETC
+	"0000010111000" when FetchStage(15 downto 13)="000" and FetchStage(2 downto 0)="010" else -- If CLRC
+	"0001001010010" when FetchStage(15 downto 13)="000" and FetchStage(2 downto 0)="011" else -- If RET 
+	"0001001010010" when FetchStage(15 downto 13)="000" and FetchStage(2 downto 0)="100" else -- If RTI
 	-- 4.If A-type
-	"1001011001100" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0010" else --If push
-	"1001010001000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0011" else --If pop
+	"0011001011010" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0010" else --If push
+	"0001001010010" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0011" else --If pop
 	"0000000000000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0100" else --If out
-	"0000000000100" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0101" else --If in
-	"0000100110000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0000" else --If rlc
-	"0000101110000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0001" else --If rrc
-	"0001100100000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0110" else --If NOT
-	"0001010100000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="1000" else --If INC
-	"0001011100000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="1001" else --If DEC
+	"0010000000000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0101" else --If in
+	"0000110100000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0000" else --If rlc
+	"0000110101000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0001" else --If rrc
+	"0000011100000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0110" else --If NOT
+	"0000011010000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="1000" else --If INC
+	"0000011011000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="1001" else --If DEC
 	-- 5. If R-type
-	"0000000000100" when FetchStage(15 downto 13)="001" and FetchStage(2 downto 0)="000" else --If Move
-	"0000010100000" when FetchStage(15 downto 13)="001" and FetchStage(2 downto 0)="001" else --If Add
-	"0000011100000" when FetchStage(15 downto 13)="001" and FetchStage(2 downto 0)="010" else --If SUB
-	"0000001100000" when FetchStage(15 downto 13)="001" and FetchStage(2 downto 0)="011" else --If AND
-	"0000000100000" when FetchStage(15 downto 13)="001" and FetchStage(2 downto 0)="100" else --If OR
+	"0010000000000" when FetchStage(15 downto 13)="001" and FetchStage(2 downto 0)="000" else --If Move
+	"0000010010000" when FetchStage(15 downto 13)="001" and FetchStage(2 downto 0)="001" else --If Add
+	"0000010011000" when FetchStage(15 downto 13)="001" and FetchStage(2 downto 0)="010" else --If SUB
+	"0000010001000" when FetchStage(15 downto 13)="001" and FetchStage(2 downto 0)="011" else --If AND
+	"0000010000000" when FetchStage(15 downto 13)="001" and FetchStage(2 downto 0)="100" else --If OR
 	-- 6. If S-type 
-	"0010111000000" when FetchStage(15 downto 13)="011" and FetchStage(0)='0' else --If SHR 
-	"0010110000000" when FetchStage(15 downto 13)="011" and FetchStage(0)='1' else --If SHL 
+	"0000000111100" when FetchStage(15 downto 13)="011" and FetchStage(0)='0' else --If SHR 
+	"0000000110100" when FetchStage(15 downto 13)="011" and FetchStage(0)='1' else --If SHL 
 	-- 7. If X-type
-	"1000000000100" when FetchStage(15 downto 13)="101" else
+	"0010000000010" when FetchStage(15 downto 13)="101" else
 	-- 8. If J-type
 	-- If call & upper 16 bits are not the same instruction bits
-	"1011011001100" when FetchStage(15 downto 13)="110" and FetchStage(2 downto 0)="100" and FetchStage(15 downto 0)/=FetchStage(31 downto 16) 
+	"0011001011110" when FetchStage(15 downto 13)="110" and FetchStage(2 downto 0)="100" and FetchStage(15 downto 0)/=FetchStage(31 downto 16) 
 	--Default ZEROS
 	else "0000000000000"; 
 						
-	-- TODO change bit order here
 	-- j) M CU bits (A B C)
 	MemoryControlM <=
 	"010" when InnerRegister="11" and counter="100" else -- If register == 3 and counter == 4
-	"100" when InnerRegister="11" and counter="011" else -- If register == 3 and counter == 3
-	"100" when InnerRegister="11" and counter="010" else -- If register == 3 and counter == 2
+	"001" when InnerRegister="11" and counter="011" else -- If register == 3 and counter == 3
+	"001" when InnerRegister="11" and counter="010" else -- If register == 3 and counter == 2
 	"000" when InnerRegister="11" and counter="001" else -- If register == 3 and counter == 1
 	"010" when InnerRegister="01" and counter="010" else -- If register == 1 and counter == 2
 	"000" when InnerRegister="01" and counter="001" else -- If register == 1 and counter == 1
@@ -235,11 +232,11 @@ Begin
 	"010" when FetchStage(15 downto 13)="000" and FetchStage(2 downto 0)="100" else -- If RTI						
 	-- 4. If J-type
 	-- If call & upper 16 bits are not the same instruction bits
-	"100" when FetchStage(15 downto 13)="110" and FetchStage(2 downto 0)="100" and FetchStage(15 downto 0)=FetchStage(31 downto 16) else 
+	"001" when FetchStage(15 downto 13)="110" and FetchStage(2 downto 0)="100" and FetchStage(15 downto 0)=FetchStage(31 downto 16) else 
 	-- 5. If A-type
-	"100" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0010" else --If push
+	"001" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0010" else --If push
 	"010" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0011" else --If pop
-	"001" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0100" else --If out
+	"100" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0100" else --If out
 	"000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0101" else --If in
 	"000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0000" else --If rlc
 	"000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0001" else --If rrc
@@ -250,19 +247,18 @@ Begin
 	"000" when FetchStage(15 downto 13)="001" or FetchStage(15 downto 13)="011" else 
 	-- 7. If X-type
 	"010" when FetchStage(15 downto 13)="101" and FetchStage(0)='0' else -- If LDD
-	"100" when FetchStage(15 downto 13)="101" and FetchStage(0)='1'  -- If STD
+	"001" when FetchStage(15 downto 13)="101" and FetchStage(0)='1'  -- If STD
 	--Default ZEROS
 	else "000";
 
 
-	-- TODO change bit order here
 	-- k) WB CU bits (A B)
 	WritebackControlWB <=
 	-- 0. 
 	"00" when InnerRegister="11" else --if register == 3 -> WB always 00
 	-- 1. If A-type
 	"00" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0010" else --If push
-	"10" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0011" else --If pop
+	"01" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0011" else --If pop
 	"00" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0100" else --If out
 	"11" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0101" else --If in
 	"11" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0000" else --If rlc
@@ -271,11 +267,11 @@ Begin
 	"11" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="1000" else --If INC
 	"11" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="1001" else --If DEC	
 	-- 2. If R-type OR S-type
-	"10" when FetchStage(15 downto 13)="001" or FetchStage(15 downto 13)="011" else 
+	"01" when FetchStage(15 downto 13)="001" or FetchStage(15 downto 13)="011" else 
 	-- 3. If LDM&upper 16 bits are not the same instruction bits
 	"11" when FetchStage(15 downto 13)="100" and FetchStage(15 downto 0)/=FetchStage(31 downto 16) else 
 	-- 4. If X type
-	"10" when FetchStage(15 downto 13)="101" and FetchStage(0)='0' else -- If LDD
+	"01" when FetchStage(15 downto 13)="101" and FetchStage(0)='0' else -- If LDD
 	"00" when FetchStage(15 downto 13)="101" and FetchStage(0)='1'  -- If STD
 	--Default ZEROS
 	else "00";

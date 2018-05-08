@@ -47,7 +47,7 @@ Begin
 	
 	MemoryAddress <= ExecuteStage(8 downto 0) when RST='1' else (others=>'0');
 	
-	Data_MEM: syncram generic map(addr_width=>9, width=>16) port map(CLK,MemoryControlM(0),MemoryAddress,(others=>'0'),SyncRamOut);
+	Data_MEM: syncram generic map(addr_width=>9, width=>16) port map(CLK,MemoryControlM(0),MemoryAddress,ExecuteStage(24 downto 9),SyncRamOut);
 	MemoryOut <= SyncRamOut when MemoryControlM(1)='1' else (others=>'Z');
  
 	MemoryDataOut<=MemoryOut;
