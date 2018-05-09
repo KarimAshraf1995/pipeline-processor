@@ -10,7 +10,7 @@ entity MemoryStage is
 		RST: in std_logic;
 		MemoryBufferFlush: in std_logic;
 		MemoryControlM: in std_logic_vector (2 downto 0); --3 bits , Control unit memory
-		ExecuteStage: in std_logic_vector(34 downto 0); --35 bits Out of Decode Stage Buffer (Previous stage)
+		ExecuteStage: in std_logic_vector(34 downto 0); --35 bits Out of Execute Stage Buffer (Previous stage)
 		MemoryDataOut: out std_logic_vector(15 downto 0); --Read value from memory
 		OutPort: out std_logic_vector(15 downto 0); -- OUT port
 		StageOutput: out std_logic_vector(34 downto 0) -- StageOutput 35 Bit
@@ -45,9 +45,9 @@ Begin
 	-- Intentialy latched
 	OutPort<=ExecuteStage(15 downto 0) when MemoryControlM(2)='1';
 	
-	MemoryAddress <= ExecuteStage(8 downto 0) when RST='1' else (others=>'0');
+	MemoryAddress <= ExecuteStage(8 downto 0) when RST='0' else (others=>'0');
 	
-	Data_MEM: syncram generic map(addr_width=>9, width=>16) port map(CLK,MemoryControlM(0),MemoryAddress,ExecuteStage(24 downto 9),SyncRamOut);
+	Data_MEM: syncram generic map(addr_width=>9, width=>16) port map(CLK,MemoryControlM(0),MemoryAddress,ExecuteStage(31 downto 16),SyncRamOut);
 	MemoryOut <= SyncRamOut when MemoryControlM(1)='1' else (others=>'Z');
  
 	MemoryDataOut<=MemoryOut;

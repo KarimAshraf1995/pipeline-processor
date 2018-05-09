@@ -31,6 +31,7 @@ component FetchStage is
 end component;
 component DecodeStage is 
 	port (CLK : in std_logic;
+	  WriteBackMuxSelector: in std_logic;
 		InMuxSelector: in std_logic; -- IN mux selector
 		R1MuxSelector: in std_logic; --From FU, R1 Mux Mux selector
 		R2MuxSelector: in std_logic; --From FU, R2 Mux selector
@@ -51,7 +52,7 @@ component ExecuteStage is
 		ExecuteBufferFlush: in std_logic;
 		ForceJMP: out std_logic;
 		JMPIndicator: in std_logic_vector (1 downto 0); --Jump Indicator
-		ExecuteControlEX: in std_logic_vector (12 downto 0); --12 bits , Control unit execute 
+		ExecuteControlEX: in std_logic_vector (13 downto 0); --14 bits , Control unit execute 
 		MemoryFlags: in std_logic_vector(3 downto 0); --Flags from memory
 		DecodeStage: in std_logic_vector(50 downto 0); --51 bits Out of Decode Stage Buffer (Previous stage)
 		ExecuteMemAddress: out std_logic_vector(15 downto 0); -- Mem Write Value to FU
@@ -93,12 +94,16 @@ component ControlUnit is
 		JMPIndicator: out std_logic_vector(1 downto 0);
 		WritebackControlWB: out std_logic_vector(1 downto 0);
 		MemoryControlM: out std_logic_vector(2 downto 0);
-		ExecuteControlEX: out std_logic_vector (12 downto 0)
+		ExecuteControlEX: out std_logic_vector (13 downto 0);
+		WriteBackAddrMuxSelector: out std_logic
 		);
 end component;
 
 component ForwardingUnit is 
-	port (CLK : in std_logic;
+	port (CLK : in std_logic;	  
+	  MemWB: in std_logic_vector (1 downto 0);
+	  MemWBAddress: in std_logic_vector (2 downto 0);
+	  WBStageValue: in std_logic_vector (15 downto 0);
 		FetchR1R2: in std_logic_vector(5 downto 0);
 		DecodeBufferlast3: in std_logic_vector(2 downto 0);
 		DecodeWB: in std_logic_vector(1 downto 0);
@@ -114,9 +119,9 @@ end component;
 
 component HazardDetectionUnit is 
 	port (CLK : in std_logic;
-		FetchBufferLower16: in std_logic_vector(15 downto 0);
+		DecodeWBAddress: in std_logic_vector(2 downto 0);
 		InstructionMemory: in std_logic_vector(15 downto 0);
-		CU_WB: in std_logic_vector(1 downto 0);
+		Is_Load: in std_logic;
 		FlushFetchBufer:out std_logic;
 		PCEnable: out std_logic
 		);
@@ -153,15 +158,16 @@ signal MemoryOutput: std_logic_vector(34 downto 0);
 -- Control Unit and its buffers
 signal JMPIndicator_CU_D,WritebackControlWB_CU_D : std_logic_vector(1 downto 0);
 signal MemoryControlM_CU_D: std_logic_vector(2 downto 0);
-signal ExecuteControlEX_CU_D: std_logic_vector (12 downto 0);
+signal ExecuteControlEX_CU_D: std_logic_vector (13 downto 0);
 
 signal JMPIndicator_D_Ex,WritebackControlWB_D_Ex : std_logic_vector(1 downto 0);
 signal MemoryControlM_D_Ex: std_logic_vector(2 downto 0);
-signal ExecuteControlEX_D_Ex: std_logic_vector (12 downto 0);
+signal ExecuteControlEX_D_Ex: std_logic_vector (13 downto 0);
 
 
 signal WritebackControlWB_Ex_M,WritebackControlWB_M_WB : std_logic_vector(1 downto 0);
 signal MemoryControlM_Ex_M: std_logic_vector(2 downto 0);
+signal WriteBackAddrMuxSelector_CU_D: std_logic := '0';
 
 Begin 
 	
@@ -183,7 +189,8 @@ Begin
 			JMPIndicator => JMPIndicator_CU_D,
 			WritebackControlWB => WritebackControlWB_CU_D,
 			MemoryControlM => MemoryControlM_CU_D,
-			ExecuteControlEX => ExecuteControlEX_CU_D
+			ExecuteControlEX => ExecuteControlEX_CU_D,
+			WriteBackAddrMuxSelector => WriteBackAddrMuxSelector_CU_D
 			);
 			
 	Fetch: FetchStage port map
@@ -205,6 +212,7 @@ Begin
 	Decode: DecodeStage port map 
 			(
 			CLK => CLK,
+			WriteBackMuxSelector => WriteBackAddrMuxSelector_CU_D,
 			InMuxSelector => DecodeInMuxSelector_CU_D,
 			R1MuxSelector => R1MuxSelector_FU_D,
 			R2MuxSelector => R2MuxSelector_FU_D,
@@ -224,7 +232,7 @@ Begin
 	DecodeBufferJmpIndicator: nRegister generic map(n=>2) port map (CLK,FlushBuffers_CU_DExMWB,'1',JMPIndicator_CU_D,JMPIndicator_D_Ex);
 	DecodeBufferWB: nRegister generic map(n=>2) port map (CLK,FlushBuffers_CU_DExMWB,'1',WritebackControlWB_CU_D,WritebackControlWB_D_Ex);
 	DecodeBufferM: nRegister generic map(n=>3) port map (CLK,FlushBuffers_CU_DExMWB,'1',MemoryControlM_CU_D,MemoryControlM_D_Ex);
-	DecodeBufferEx: nRegister generic map(n=>13) port map (CLK,FlushBuffers_CU_DExMWB,'1',ExecuteControlEX_CU_D,ExecuteControlEX_D_Ex);
+	DecodeBufferEx: nRegister generic map(n=>14) port map (CLK,FlushBuffers_CU_DExMWB,'1',ExecuteControlEX_CU_D,ExecuteControlEX_D_Ex);
 
 
 	Execute: ExecuteStage port map
@@ -272,9 +280,9 @@ Begin
 	HazardDetectionUnit1: HazardDetectionUnit port map
 		(
 		CLK => CLK,
-		FetchBufferLower16 => FetchOutput(15 downto 0),
+		DecodeWBAddress => FetchOutput(12 downto 10),
 		InstructionMemory => FetchedInstruction_F_HU,
-		CU_WB => WritebackControlWB_CU_D,
+		Is_Load => WriteBackAddrMuxSelector_CU_D,
 		FlushFetchBufer => FetchBufferFlush_HU_F,
 		PCEnable => PCEnable_HU_F
 		);
@@ -282,8 +290,11 @@ Begin
 	
 	ForwardingUnit1: ForwardingUnit port map
 		(
-		CLK => CLK,
-		FetchR1R2 => FetchOutput(8 downto 3),
+		CLK => CLK,		
+	  MemWB => WritebackControlWB_M_WB,
+	  MemWBAddress => WriteBackAddress_M_D,
+	  WBStageValue => WriteBackValue_WB_D,
+		FetchR1R2 => FetchOutput(12 downto 7),
 		DecodeBufferlast3 => DecodeOutput(50 downto 48),
 		DecodeWB => WritebackControlWB_D_Ex,
 		ExecuteWB => WritebackControlWB_Ex_M,

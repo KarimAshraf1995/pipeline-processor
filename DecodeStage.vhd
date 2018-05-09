@@ -5,6 +5,7 @@ use ieee.std_logic_unsigned.all;
 
 entity DecodeStage is 
 	port (CLK : in std_logic;
+	  WriteBackMuxSelector: in std_logic;
 		InMuxSelector: in std_logic; -- IN mux selector
 		R1MuxSelector: in std_logic; --From FU, R1 Mux Mux selector
 		R2MuxSelector: in std_logic; --From FU, R2 Mux selector
@@ -64,22 +65,24 @@ signal ImmMuxOut: std_logic_vector(15 downto 0);
 signal RegR1,RegR2: std_logic_vector(15 downto 0);
 signal R1Mux0Out,R1Mux1Out,R2MuxOut: std_logic_vector(15 downto 0);
 signal StageBufferIn : std_logic_vector(50 downto 0);
+signal WBAddrMuxOut : std_logic_vector (2 downto 0);
 Begin  
 	
-	value0extended <= "00000000000"&FetchStage(13 downto 9);
-	value1extended <= "0000000"&FetchStage(14 downto 6);
+	value0extended <= "00000000000"&FetchStage(6 downto 2);
+	value1extended <= "0000000"&FetchStage(9 downto 1);
 	
 	ImmMux: Mux4 generic map(width=>16) port map(ImmMuxSelector,value0extended,FetchStage(31 downto 16),value1extended,x"0001",ImmMuxOut);
-	RegisterFile: regFile generic map(addr_width=>3,width=>16) port map (CLK,WriteBackEnable,FetchStage(5 downto 3),FetchStage(8 downto 6),WriteBackAddress,WriteBackValue,RegR1,RegR2);
+	RegisterFile: regFile generic map(addr_width=>3,width=>16) port map (CLK,WriteBackEnable,FetchStage(12 downto 10),FetchStage(9 downto 7),WriteBackAddress,WriteBackValue,RegR1,RegR2);
 	
 	R1Mux0: Mux2 generic map(width=>16) port map(R1MuxSelector, RegR1,FR1,R1Mux0Out);
 	R1Out<=R1Mux0Out;
 	
 	R1Mux1: Mux2 generic map(width=>16) port map(InMuxSelector, R1Mux0Out,InPort,R1Mux1Out);
 	R2Mux: Mux2 generic map(width=>16) port map(R2MuxSelector, RegR2,FR2,R2MuxOut);
+  WBAddrMux: Mux2 generic map(width=>3) port map(WriteBackMuxSelector, FetchStage(9 downto 7),FetchStage(12 downto 10),WBAddrMuxOut);
 	
 	
-	StageBufferIn <= FetchStage(8 downto 6)&ImmMuxOut&R2MuxOut&R1Mux1Out;
+	StageBufferIn <= WBAddrMuxOut&ImmMuxOut&R2MuxOut&R1Mux1Out;
 	DecodeBuffer: nRegister generic map(n=>51) port map(CLK,DecodeBufferFlush, '1', StageBufferIn, StageOutput);
 	
 	
