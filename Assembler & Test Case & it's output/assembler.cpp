@@ -70,7 +70,7 @@ int main()
 
 	//Data Part
 	string data;
-	int count = 0;
+	int count = 0, reset_address=0;
 	while (getline(inputFile, data))
 	{
 		if (data == "")
@@ -82,6 +82,8 @@ int main()
 			break;
 		data = regex_replace(data, regex(" "), "");
 		DataFile << bitset<16>(stoi(data)).to_string() << endl;
+		if (count == 0)
+			reset_address = stoi(data);
 		count++;
 	}
 	for (int i = count; i < 256; i++)
@@ -92,6 +94,11 @@ int main()
 	instruction = "";
 	string line = "";
 	count = 0;
+	while (count < reset_address)
+	{
+		InstructionFile << bitset<16>(0).to_string() << endl;
+		count++;
+	}
 	while (line == "" || getline(inputFile, line))
 	{
 
