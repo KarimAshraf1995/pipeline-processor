@@ -124,17 +124,14 @@ Begin
 				is_counting <= '1';
 			end if;
 			
-			-- c)JMPIndicator
-			-- If J-type 110: put lower two bits into the Jmp indicator buffer  
-			-- ON RISING EDGE OF CLOCK.
-			if FetchStage(15 downto 13)="110" then 
-				iJMPIndicator <= FetchStage(1 downto 0);
-			else
-				iJMPIndicator <= "00";
-			end if;
+			  
+			
 		end if;
 	end process;
- 
+	
+	-- c)JMPIndicator
+	-- If J-type 110: put lower two bits into the Jmp indicator buffer
+	iJMPIndicator <= FetchStage(1 downto 0) when FetchStage(15 downto 13)="110" else "00";
 		
 	--d) Buffers control
 	--If call & upper 16 bits are the same instruction bits: stall lower 16
@@ -239,7 +236,7 @@ Begin
 	"010" when FetchStage(15 downto 13)="000" and FetchStage(2 downto 0)="100" else -- If RTI						
 	-- 4. If J-type
 	-- If call & upper 16 bits are not the same instruction bits
-	"001" when FetchStage(15 downto 13)="110" and FetchStage(2 downto 0)="100" and FetchStage(15 downto 0)=FetchStage(31 downto 16) else 
+	"001" when FetchStage(15 downto 13)="110" and FetchStage(2 downto 0)="100" and FetchStage(15 downto 0)/=FetchStage(31 downto 16) else 
 	-- 5. If A-type
 	"001" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0010" else --If push
 	"010" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0011" else --If pop

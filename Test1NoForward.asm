@@ -11,7 +11,6 @@ Sub R0,R4 ;R4=-5 N=1
 Mov R1,R3 ;R3=13 
 AND R2,R1 ;R1=5
 SHL R1,2,R0 ;R0=52
-MUL R2,R1 ;R1=35    [semester only]
 
 ;set value 5d at In Port
 IN R0      ;R0=5

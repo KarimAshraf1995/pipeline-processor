@@ -88,7 +88,7 @@ Begin
 	ExecuteMemAddress <= EXout1;
 	
 	-- Branch Decision Unit
-	ForceJMP<=	'1' when JMPIndicator="01" and ALU_flags_Rout(3)='0' else
+	ForceJMP<=	'1' when JMPIndicator="01" and ALU_flags_Rout(3)='1' else
 				'1' when JMPIndicator="10" and ALU_flags_Rout(2)='1' else
 				'1' when JMPIndicator="11" and ALU_flags_Rout(1)='1' else '0';
 	-- END Branch Decision Unit

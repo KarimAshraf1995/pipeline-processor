@@ -238,7 +238,7 @@ Begin
 	Execute: ExecuteStage port map
 			(
 			CLK => CLK,
-			ExecuteBufferFlush => FlushBuffers_CU_DExMWB,
+			ExecuteBufferFlush => '0',
 			ForceJMP => ForceJMP_EX_CU,
 			JMPIndicator => JMPIndicator_D_Ex,
 			ExecuteControlEX => ExecuteControlEX_D_Ex,
@@ -248,14 +248,14 @@ Begin
 			StageOutput => ExecuteOutput
 			);
 
-	ExecuteBufferM: nRegister generic map(n=>3) port map (CLK,FlushBuffers_CU_DExMWB,'1',MemoryControlM_D_Ex,MemoryControlM_Ex_M);
-	ExecuteBufferWB: nRegister generic map(n=>2) port map (CLK,FlushBuffers_CU_DExMWB,'1',WritebackControlWB_D_Ex,WritebackControlWB_Ex_M);
+	ExecuteBufferM: nRegister generic map(n=>3) port map (CLK,'0','1',MemoryControlM_D_Ex,MemoryControlM_Ex_M);
+	ExecuteBufferWB: nRegister generic map(n=>2) port map (CLK,'0','1',WritebackControlWB_D_Ex,WritebackControlWB_Ex_M);
 	
 	Memory: MemoryStage port map
 		(
 		CLK => CLK,
 		RST => RST,
-		MemoryBufferFlush => FlushBuffers_CU_DExMWB,
+		MemoryBufferFlush => '0',
 		MemoryControlM => MemoryControlM_Ex_M,
 		ExecuteStage => ExecuteOutput,
 		MemoryDataOut => MemoryDataRead_M,
@@ -263,7 +263,7 @@ Begin
 		StageOutput => MemoryOutput
 		);
 
-	MemoryBufferWB: nRegister generic map(n=>2) port map (CLK,FlushBuffers_CU_DExMWB,'1',WritebackControlWB_Ex_M,WritebackControlWB_M_WB);
+	MemoryBufferWB: nRegister generic map(n=>2) port map (CLK,'0','1',WritebackControlWB_Ex_M,WritebackControlWB_M_WB);
 	
 	WriteBackAddress_M_D <= MemoryOutput(34 downto 32);
 	WriteBackEnable_M_D <= WritebackControlWB_M_WB(0);

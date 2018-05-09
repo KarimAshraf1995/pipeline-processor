@@ -72,7 +72,7 @@ Begin
 	PCAdderFeedback <= PCRegOut + 1;
 	PC: nRegister generic map(n=>16) port map(CLK,'0',PCEnable,PCMuxOut,PCRegOut);
 	Instruction_MEM: syncram generic map(addr_width=>9, width=>16) port map(CLK,'0',PCRegOut(8 downto 0),(others=>'0'),FetchedInstructionInternal);
-	UPPER_MUX: Mux2 generic map(width=>16) port map(UpperMuxSelect,FetchedInstructionInternal,PC16Addr,UpperMuxOut);
+	UPPER_MUX: Mux2 generic map(width=>16) port map(UpperMuxSelect,FetchedInstructionInternal,PCRegOut,UpperMuxOut);
 	FetchedInstruction <= FetchedInstructionInternal;
 	
 	
