@@ -20,7 +20,7 @@ struct Instr_Props
 
 string getRegBits(string reg)
 {
-	return bitset<3>(reg[1]-'0').to_string();
+	return bitset<3>(reg[1] - '0').to_string();
 }
 
 int main()
@@ -35,7 +35,7 @@ int main()
 	{
 		instrToBits >> bits;
 		instrToBits >> opType;
-		instr_bits.insert({ instruction,Instr_Props{bits,opType} });
+		instr_bits.insert({ instruction,Instr_Props{ bits,opType } });
 	}
 	instrToBits.close();
 
@@ -60,10 +60,18 @@ int main()
 		exit(1);   // call system to stop
 	}
 
+	InstructionFile << "// memory data file (do not edit the following line - required for mem load use)" << endl;
+	InstructionFile << "// instance=/processor/Fetch/Instruction_MEM/ram" << endl;
+	InstructionFile << "// format=bin addressradix=h dataradix=b version=1.0 wordsperline=1 noaddress" << endl;
+
+	DataFile << "// memory data file (do not edit the following line - required for mem load use)" << endl;
+	DataFile << "// instance=/processor/Memory/Data_MEM/ram" << endl;
+	DataFile << "// format=bin addressradix=h dataradix=b version=1.0 wordsperline=1 noaddress" << endl;
+
 	//Data Part
 	string data;
 	int count = 0;
-	while (getline(inputFile,data))
+	while (getline(inputFile, data))
 	{
 		if (data == "")
 			continue;
@@ -73,20 +81,20 @@ int main()
 		if (data[0]<'0' || data[0]>'9')
 			break;
 		data = regex_replace(data, regex(" "), "");
-		DataFile << bitset<16>(stoi(data)).to_string() << " ";
+		DataFile << bitset<16>(stoi(data)).to_string() << endl;
 		count++;
 	}
 	for (int i = count; i < 256; i++)
-		DataFile << bitset<16>(0).to_string()<<" ";
+		DataFile << bitset<16>(0).to_string() << endl;
 
 	//Instruction Part
 	string op1, op2;
 	instruction = "";
 	string line = "";
 	count = 0;
-	while (line=="" || getline(inputFile, line))
+	while (line == "" || getline(inputFile, line))
 	{
-		
+
 		if (line == "")
 			line = data;
 		else
@@ -96,13 +104,13 @@ int main()
 			line = regex_replace(line, regex(";[^~]*$"), "");
 		}
 		stringstream ss(line);
-		instruction = line.substr(0,line.find(" ")); 
-		string operands = line.substr(line.find(" ")+1, line.length() - line.find(" ")-1); 
+		instruction = line.substr(0, line.find(" "));
+		string operands = line.substr(line.find(" ") + 1, line.length() - line.find(" ") - 1);
 
 		if (instruction[0] == '.')
 		{
 			int dstInstr = stoi(instruction.substr(1, instruction.length() - 1));
-			while(count++<dstInstr)
+			while (count++ < dstInstr)
 				InstructionFile << "0000000000000000" << " ";
 		}
 		else
@@ -114,8 +122,8 @@ int main()
 			//vector<int> bits = getdigits(instr_prop.bits);
 			string bits = instr_prop.bits;
 			//remove_if(operands.begin(), operands.end(), isspace);
-			operands = regex_replace(operands,regex(";[^~]*$"),"");
-			operands = regex_replace(operands,regex(" "),"");
+			operands = regex_replace(operands, regex(";[^~]*$"), "");
+			operands = regex_replace(operands, regex(" "), "");
 
 
 			//Parsing Operands (assuming no semi-colon at end & new line char)
@@ -125,7 +133,7 @@ int main()
 			string op1 = "", imm = "", op2 = "", ea = "";
 			bool takeToken = false;
 			//while ((pos = operands.find(delimiter)) != std::string::npos) {
-			while(true){
+			while (true) {
 				if ((pos = operands.find(delimiter)) != std::string::npos)
 					takeToken = true;
 				else
@@ -158,46 +166,46 @@ int main()
 				operands.erase(0, pos + delimiter.length());
 			}
 
-			if(op1!="")
+			if (op1 != "")
 				op1 = getRegBits(op1);
-			if(op2!="")
+			if (op2 != "")
 				op2 = getRegBits(op2);
 
 			string upper15;
 			switch (instr_prop.opType)
 			{
 			case 1: //NULL Type 
-				InstructionFile << "0000000000000" + bits << " ";
+				InstructionFile << "0000000000000" + bits << endl;
 				break;
 			case 2: //R-Type
-				InstructionFile << "001" + op1 + op2 + "0000" + bits << " ";
+				InstructionFile << "001" + op1 + op2 + "0000" + bits << endl;
 				break;
 			case 3: //A-Type
-				InstructionFile << "010" + op1 + op1 + "000" + bits << " ";
+				InstructionFile << "010" + op1 + op1 + "000" + bits << endl;
 				break;
 			case 4: //S-Type
-				InstructionFile << "011" + op1 + op2 + imm + "0" + bits << " ";
+				InstructionFile << "011" + op1 + op2 + imm + "0" + bits << endl;
 				break;
 			case 5: //I-Type
 				upper15 = "100" + op1 + op1 + "000000";
 				if ((upper15 + "1") == imm)
-					InstructionFile << upper15 + "0" << " ";
+					InstructionFile << upper15 + "0" << endl;
 				else
-					InstructionFile << upper15 + "1" << " ";
+					InstructionFile << upper15 + "1" << endl;
 				InstructionFile << imm << " ";
 				break;
 			case 6: //X-Type
-				InstructionFile << "101" + op1 + ea + bits << " ";
+				InstructionFile << "101" + op1 + ea + bits << endl;
 				break;
 			case 7: //J-Type
-				InstructionFile << "110" + op1 + "000000" + bits << " ";
+				InstructionFile << "110" + op1 + "000000" + bits << endl;
 				break;
 			}
 			count++;
 		}
 	}
 	for (int i = count; i < 256; i++)
-		InstructionFile << bitset<16>(0).to_string() << " ";
+		InstructionFile << bitset<16>(0).to_string() << endl;
 	inputFile.close();
 	InstructionFile.close();
 	DataFile.close();
