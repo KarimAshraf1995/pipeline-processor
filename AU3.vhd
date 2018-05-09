@@ -52,6 +52,9 @@ Z(0) <= R(0);
 ZeroGenerate: for i in 1 to width-1 generate Z(i) <= Z(i-1) OR R(i); end generate;
 Zout(0) <= not Z(width-1);
 Nout <= "1"	 when R(width-1)='1' else "0";
--- Change This Later
-Vout <= "0";
+-- Changed to calculate overflow in Add 
+Vout <= 
+"1" when Aa(width-1)='1' and Bb(width-1)='1' and R(width-1)='0' and S="01" else
+"1" when Aa(width-1)='0' and Bb(width-1)='0' and R(width-1)='1' and S="01" else 
+"0";
 end Architecture;
