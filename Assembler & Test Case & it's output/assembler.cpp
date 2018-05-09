@@ -111,7 +111,7 @@ int main()
 		{
 			int dstInstr = stoi(instruction.substr(1, instruction.length() - 1));
 			while (count++ < dstInstr)
-				InstructionFile << "0000000000000000" << " ";
+				InstructionFile << "0000000000000000" << endl;
 		}
 		else
 		{
@@ -192,13 +192,13 @@ int main()
 					InstructionFile << upper15 + "0" << endl;
 				else
 					InstructionFile << upper15 + "1" << endl;
-				InstructionFile << imm << " ";
+				InstructionFile << imm << endl;
 				break;
 			case 6: //X-Type
 				InstructionFile << "101" + op1 + ea + bits << endl;
 				break;
 			case 7: //J-Type
-				InstructionFile << "110" + op1 + "000000" + bits << endl;
+				InstructionFile << "110" + op1 + "0000000" + bits << endl;
 				break;
 			}
 			count++;
