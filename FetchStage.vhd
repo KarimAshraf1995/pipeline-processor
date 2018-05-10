@@ -6,7 +6,7 @@ use ieee.std_logic_unsigned.all;
 entity FetchStage is 
 	port (CLK : in std_logic;
 		PCEnable : in std_logic; -- PC enable - HDU
-		UpperMuxSelect: in std_logic; -- 1 bit upper MUX selector
+		UpperMuxSelect: in std_logic_vector (1 downto 0); -- 1 bit upper MUX selector
 		FetchBufferFlush_CU: in std_logic; -- 1 bit to clear lower FROM CU
 		FetchBufferFlush_HU: in std_logic; -- 1 bit to clear lower FROM HU
 		FetchBufferStall: in std_logic; -- 1 bit to stall upper Fetch
@@ -66,13 +66,16 @@ signal StageBufferLowerOut: std_logic_vector (15 downto 0);
 signal StallLower: std_logic;
 signal FlushLower: std_logic;
 signal FetchBufferFlush: std_logic;
+signal PCRegOutMinusOne,PCRegOutMinusTwo: std_logic_vector (15 downto 0);
 Begin 
+	PCRegOutMinusOne <= PCRegOut - 1;
+	PCRegOutMinusTwo <= PCRegOut - 2;
 	
 	PC_MUX: Mux4 generic map(width=>16) port map(PCMuxSelector,PC16Addr,PCMemAddr,PCAdderFeedback,Jmp16R,PCMuxOut);
 	PCAdderFeedback <= PCRegOut + 1;
 	PC: nRegister generic map(n=>16) port map(CLK,'0',PCEnable,PCMuxOut,PCRegOut);
 	Instruction_MEM: syncram generic map(addr_width=>9, width=>16) port map(CLK,'0',PCRegOut(8 downto 0),(others=>'0'),FetchedInstructionInternal);
-	UPPER_MUX: Mux2 generic map(width=>16) port map(UpperMuxSelect,FetchedInstructionInternal,PCRegOut,UpperMuxOut);
+	UPPER_MUX: Mux4 generic map(width=>16) port map(UpperMuxSelect,FetchedInstructionInternal,PCRegOut,PCRegOutMinusOne,PCRegOutMinusTwo,UpperMuxOut);
 	FetchedInstruction <= FetchedInstructionInternal;
 	
 	

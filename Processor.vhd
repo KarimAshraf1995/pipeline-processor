@@ -17,7 +17,7 @@ Architecture Processor_Implementation of Processor is
 component FetchStage is 
 	port (CLK : in std_logic;
 		PCEnable : in std_logic; -- PC enable - HDU
-		UpperMuxSelect: in std_logic; -- 1 bit upper MUX selector
+		UpperMuxSelect: in std_logic_vector (1 downto 0); -- 1 bit upper MUX selector
 		FetchBufferFlush_CU: in std_logic; -- 1 bit to clear lower FROM CU
 		FetchBufferFlush_HU: in std_logic; -- 1 bit to clear lower FROM HU
 		FetchBufferStall: in std_logic; -- 1 bit to stall upper Fetch
@@ -79,11 +79,12 @@ component WriteBackStage is
 end component;
 component ControlUnit is 
 	port (CLK : in std_logic;
+	  RST: in std_logic;
 		INT: in std_logic;
 		ForceJMP: in std_logic;
 		FetchStage: in std_logic_vector(31 downto 0); --Output of FetchStage buffer
 		FlushBuffers: out std_logic;	-- FLush Decode,Execute and Memory Buffers
-		FetchUpperMuxSelector: out std_logic;
+		FetchUpperMuxSelector: out std_logic_vector (1 downto 0);
 		FetchBufferFlush: out std_logic;
 		FetchBufferStall: out std_logic;
 		DecodeInMuxSelector: out std_logic;
@@ -139,9 +140,10 @@ end component;
 
 
 -- Between Different components
-signal PCEnable_HU_F,UpperMuxSelect_CU_F, FetchBufferFlush_HU_F, FetchBufferFlush_CU_F, FetchBufferStall_CU_F :  std_logic;
+signal PCEnable_HU_F, FetchBufferFlush_HU_F, FetchBufferFlush_CU_F, FetchBufferStall_CU_F :  std_logic;
+signal UpperMuxSelect_CU_F : std_logic_vector (1 downto 0);
 signal ForceJMP_EX_CU,FlushBuffers_CU_DExMWB, DecodeInMuxSelector_CU_D :  std_logic;
-signal PC16Addr_D_F,PCMemAddr_M_F, WriteBackValue_WB_D: std_logic_vector (15 downto 0);
+signal PC16Addr_D_F, WriteBackValue_WB_D: std_logic_vector (15 downto 0);
 signal FR1_FU_D,FR2_FU_D: std_logic_vector (15 downto 0);
 signal PCMuxSelector_CU_F, DecodeImmMuxSelector_CU_D: std_logic_vector(1 downto 0);
 signal WriteBackAddress_M_D: std_logic_vector(2 downto 0);
@@ -174,6 +176,7 @@ Begin
 	
 	Control: ControlUnit port map
 			(CLK => CLK,
+			RST => RST,
 			INT => INT,
 			ForceJMP => ForceJMP_EX_CU,
 			FetchStage => FetchOutput,
@@ -205,7 +208,7 @@ Begin
 			Jmp16R => DecodeOutput(15 downto 0),
 			PC16Addr => PC16Addr_D_F,
 			PCMuxSelector => PCMuxSelector_CU_F,
-			PCMemAddr => PCMemAddr_M_F, 
+			PCMemAddr => MemoryDataRead_M, 
 			StageOutput => FetchOutput
 			);
 	
