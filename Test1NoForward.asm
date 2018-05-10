@@ -26,6 +26,8 @@ CLRC
 INC R0     ;R0=12
 DEC R1     ;R1=-6 N=1 Z=0
 NEG R3     ;R3=-3   N=1 Z=0   [credit only]
+;We added this for testing
+OUT R5	   ;Value at OUT Port = R5
 
 .100
 SETC
