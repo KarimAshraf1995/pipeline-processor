@@ -185,6 +185,7 @@ Begin
 	"00000011100000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0110" else --If NOT
 	"00000011010000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="1000" else --If INC
 	"00000011011000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="1001" else --If DEC
+	"00000011110000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0111" else --If NEG
 	-- 5. If R-type
 	"00010000000000" when FetchStage(15 downto 13)="001" and FetchStage(2 downto 0)="000" else --If Move
 	"00000010010000" when FetchStage(15 downto 13)="001" and FetchStage(2 downto 0)="001" else --If Add
@@ -228,6 +229,7 @@ Begin
 	"000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0110" else --If NOT
 	"000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="1000" else --If INC
 	"000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="1001" else --If DEC	
+  "000" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0111" else --If NEG
 	-- 6. If R-type OR S-type
 	"000" when FetchStage(15 downto 13)="001" or FetchStage(15 downto 13)="011" else 
 	-- 7. If X-type
@@ -251,6 +253,7 @@ Begin
 	"11" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0110" else --If NOT
 	"11" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="1000" else --If INC
 	"11" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="1001" else --If DEC	
+	"11" when FetchStage(15 downto 13)="010" and FetchStage(3 downto 0)="0111" else --If NEG
 	-- 2. If R-type OR S-type
 	"11" when FetchStage(15 downto 13)="001" or FetchStage(15 downto 13)="011" else 
 	-- 3. If LDM&upper 16 bits are not the same instruction bits

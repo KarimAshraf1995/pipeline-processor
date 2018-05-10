@@ -91,7 +91,7 @@ Begin
 -- INCOperand1 1010
 -- DECOperand1 1011
 -- NOT 	1100
--- NEG<1110>  1101
+-- NEG<1110>  1110
 
 ALUOP <= "0101" when OP="0000" else  -- OR
 		"0100" when OP="0001" else   -- AND
@@ -106,13 +106,13 @@ ALUOP <= "0101" when OP="0000" else  -- OR
 		"0000" when OP="1010" else	 -- INCOperand1
 		"0011" when OP="1011" else	 -- DECOperand1
 		"0111" when OP="1100" else	 -- NOT
-		"0010" when OP="1101" else   -- NEG
+		"0010" when OP="1110" else   -- NEG
 		"1111";
 
 
-Aa <= (others=>'0') when OP="1101" else A;
-Bb <= A when OP="1101" else B;
-Acin <= "0"	when OP="1011" OR OP="0010" else "1" when OP="1010" OR OP="1101" OR OP="0011" else Cin;
+Aa <= (others=>'0') when OP="1110" else A;
+Bb <= A when OP="1110" else B;
+Acin <= "0"	when OP="1011" OR OP="0010" else "1" when OP="1010" OR OP="1110" OR OP="0011" else Cin;
 
 Cout <= "1" when OP="1000" else "0" when OP="1001" else CMux;
 Zout <= "0" when OP="1000" OR OP="1001" else Zmux;

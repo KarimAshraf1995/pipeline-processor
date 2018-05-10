@@ -80,13 +80,15 @@ Begin
 	FlagOROP2Mux: Mux2 generic map(width=>16) port map(DupEXCUbits(12),OP2MuxOutL1,PaddedFlags,OP2MuxOut);
 
 
-	ALU_cin <= ALU_flags_Rout(1 downto 1) when DupEXCUbits(8)='0' else "0";
+	ALU_cin <= ALU_flags_Rout(1 downto 1) when DupEXCUbits(8)='1' else "0";
 	ALUOP: ALU generic map (width=>16) port map(DupEXCUbits(6 downto 3),OP1MuxOut,OP2MuxOut,ALUOutput,ALU_cin,ALU_zout,ALU_vout,ALU_nout,ALU_cout);
 	ALU_flags_Mux<=ALU_zout&ALU_nout&ALU_cout&ALU_vout when DupEXCUbits(11)='0' else MemoryFlags; --ZNCV
 	
 	ALU_flags_Rin <= '0'&ALU_flags_Rout(2 downto 0) when ForceJMPInternal='1' and JMPIndicator="01" else -- JZ condition true, consume Z flag
 					  ALU_flags_Rout(3)&'0'&ALU_flags_Rout(1 downto 0) when ForceJMPInternal='1' and JMPIndicator="10" else  -- JN condition true, consume N flag
 					  ALU_flags_Rout(3 downto 2)&'0'&ALU_flags_Rout(0) when ForceJMPInternal='1' and JMPIndicator="11" else  -- JC condition true, consume C flag
+					  ALU_flags_Rout(3 downto 2)&'0'&ALU_flags_Rout(0) when DupEXCUbits(6 downto 3)="1001" else --CLRC
+					  ALU_flags_Rout(3 downto 2)&'1'&ALU_flags_Rout(0) when DupEXCUbits(6 downto 3)="1000" else --SETC
 					  ALU_flags_Mux; -- Default, use flags from mux.
 	
 	
