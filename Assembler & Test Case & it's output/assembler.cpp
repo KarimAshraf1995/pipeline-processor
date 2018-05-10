@@ -94,21 +94,25 @@ int main()
 	instruction = "";
 	string line = "";
 	count = 0;
+	bool first = true;
 	while (count < reset_address)
 	{
 		InstructionFile << bitset<16>(0).to_string() << endl;
 		count++;
 	}
-	while (line == "" || getline(inputFile, line))
+	while (first || getline(inputFile, line))
 	{
 
-		if (line == "")
+		if (first)
+		{
 			line = data;
+			first = false;
+		}
 		else
 		{
+			line = regex_replace(line, regex(";[^~]*$"), "");
 			if (line == "")
 				continue;
-			line = regex_replace(line, regex(";[^~]*$"), "");
 		}
 		stringstream ss(line);
 		instruction = line.substr(0, line.find(" "));
