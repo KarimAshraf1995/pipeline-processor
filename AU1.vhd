@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 
 entity AU1 is 
@@ -17,7 +18,7 @@ Architecture AU1_Implementation of AU1 is
 signal R,Z: std_logic_vector(width-1 downto 0);
 
 Begin 
-	R <=  "0" & A(width-1 downto 1)  when S="00" else
+	R <= to_stdlogicvector(to_bitvector(A) srl to_integer(unsigned(B))) when S="00" else 
 		A(0) & A(width-1 downto 1) when S="01" else
 		Cin(0) & A(width-1 downto 1) when S="10" else
 		A(width-1) & A(width-1 downto 1); 

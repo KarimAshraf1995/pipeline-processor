@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 
 
@@ -18,7 +19,7 @@ Architecture AU2_Implementation of AU2 is
 signal R,Z: std_logic_vector(width-1 downto 0);
 
 Begin 
-	R <=  A(width-2 downto 0) & "0"  when S="00" else
+	R <=  to_stdlogicvector(to_bitvector(A) sll to_integer(unsigned(B)))   when S="00" else
 		 A(width-2 downto 0) & A(width-1)  when S="01" else
 		 A(width-2 downto 0) & Cin when S="10" else
 		 (others => '0') ;	 
